@@ -1,0 +1,42 @@
+{
+  "name": "patient-portal",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material/animation": "^0.25.0",
+    "@material/checkbox": "^0.31.0",
+    "@material/form-field": "^0.31.0",
+    "@material/layout-grid": "^0.24.0",
+    "@material/list": "^0.31.0",
+    "@material/menu": "^0.31.0",
+    "@material/select": "^0.31.0",
+    "@material/textfield": "^0.31.0",
+    "@material/typography": "^0.28.0",
+    "history": "^4.7.2",
+    "node-sass-chokidar": "0.0.3",
+    "npm-run-all": "^4.1.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "react-router": "latest",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "react-scripts": "1.1.1",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "scripts": {
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "ajv": "^6.2.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "1.11.1"
+  }
+}
