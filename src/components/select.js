@@ -19,7 +19,12 @@ export default class Select extends MDCBase {
           </div>
           <div className="mdc-menu mdc-select__menu">
             <ul className="mdc-list mdc-menu__items" />
-            <li className="mdc-list-item" role="option" tabIndex="0">
+            <li
+              className="mdc-list-item"
+              aria-selected="false"
+              role="option"
+              tabIndex="0"
+            >
               Example text, not visible.
             </li>
           </div>

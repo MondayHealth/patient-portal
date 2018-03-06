@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Input from "./components/input";
+import PhoneInput from "./components/phone-input";
+import NumberInput from "./components/number-input";
+import CurrencyInput from "./components/currency-input";
 import Cell from "./components/cell";
 import Select from "./components/select";
 import TextArea from "./components/textarea";
@@ -19,19 +22,19 @@ class App extends Component {
                 </h1>
               </Cell>
               <Cell size={4}>
-                <Input label={"First Name"} />
+                <Input label={"First Name"} id={"first"} />
               </Cell>
               <Cell size={4}>
-                <Input label={"Last Name"} />
+                <Input label={"Last Name"} id={"last"} />
               </Cell>
               <Cell size={4}>
-                <Input label={"Phone Number"} />
+                <PhoneInput label={"Phone Number"} id={"phone"} />
               </Cell>
               <Cell size={4}>
-                <Input label={"E-Mail"} />
+                <Input type={"email"} label={"E-Mail"} id={"email"} />
               </Cell>
               <Cell size={4}>
-                <Input label={"Age"} />
+                <NumberInput min={1} max={100} label={"Age"} id={"age"} />
               </Cell>
               <Cell size={4}>
                 <Select
@@ -40,22 +43,28 @@ class App extends Component {
                 />
               </Cell>
               <Cell size={8}>
-                <Input label={"The full name of your insurance plan"} />
+                <Input
+                  label={"The full name of your insurance plan"}
+                  id={"insurance"}
+                />
               </Cell>
               <Cell size={4}>
-                <Input label={"The most you can pay per appointment?"} />
+                <CurrencyInput
+                  label={"The most you can pay per appointment?"}
+                  id={"max-spend"}
+                />
               </Cell>
               <Cell size={2}>
-                <Input label={"Your zip code"} />
+                <Input label={"Your Zip Code"} id={"zip"} />
               </Cell>
               <Cell size={4}>
                 <Select
-                  label={"Prefered therapist gender"}
+                  label={"Prefered Therapist Gender"}
                   options={["No Preference", "Male", "Female", "Other"]}
                 />
               </Cell>
               <Cell size={4}>
-                <Input label={"Language"} />
+                <Input label={"Language"} id={"lang"} />
               </Cell>
               <Cell size={8}>
                 <TextArea label={"Anything else you'd like to say"} />
