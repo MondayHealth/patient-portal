@@ -3,8 +3,8 @@ import MDCBase from "./base";
 import { Icon } from "./icon";
 import { MDCTextField } from "@material/textfield";
 
-import "@material/form-field/dist/mdc.form-field.min.css";
 import "@material/textfield/dist/mdc.textfield.min.css";
+import "@material/form-field/dist/mdc.form-field.min.css";
 
 const HelperText = ({ id, text, validation, persistent }) => {
   let classes = "mdc-text-field-helper-text";
@@ -92,7 +92,9 @@ class Input extends MDCBase {
     let ret = (
       <label className={classes}>
         {icon}
-        <span className="mdc-text-field__label">{this.props.label}</span>
+        <span className="mdc-floating-label mdc-text-field__label">
+          {this.props.label}
+        </span>
         <input {...params} />
         <div className="mdc-line-ripple" />
       </label>
