@@ -2,6 +2,8 @@ import React from "react";
 import MDCBase from "./base";
 import { MDCCheckbox } from "@material/checkbox";
 
+import "@material/checkbox/dist/mdc.checkbox.min.css";
+
 class CheckBox extends MDCBase {
   getConstructor() {
     return MDCCheckbox;

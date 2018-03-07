@@ -1,8 +1,10 @@
 import React from "react";
-
 import MDCBase from "./base";
-
+import { Icon } from "./icon";
 import { MDCTextField } from "@material/textfield";
+
+import "@material/form-field/dist/mdc.form-field.min.css";
+import "@material/textfield/dist/mdc.textfield.min.css";
 
 const HelperText = ({ id, text, validation, persistent }) => {
   let classes = "mdc-text-field-helper-text";
@@ -27,11 +29,10 @@ class Input extends MDCBase {
     super(props);
 
     this.state = {
-      validationMessage: null
+      validationMessage: null,
+      leadingIcon: false,
+      box: true
     };
-
-    this.box = false;
-    this.leadingIcon = false;
   }
 
   getConstructor() {
@@ -42,6 +43,13 @@ class Input extends MDCBase {
     return {
       type: this.props.type || "text"
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      box: nextProps.box !== false,
+      leadingIcon: nextProps.leadingIcon || false
+    });
   }
 
   render() {
@@ -56,17 +64,12 @@ class Input extends MDCBase {
 
     let classes = "mdc-text-field";
     let icon = "";
-    if (this.box || this.props.box) {
+    if (this.state.box) {
       classes += " mdc-text-field--box";
 
-      const iconName = this.props.leadingIcon || this.leadingIcon;
-      if (iconName) {
+      if (this.state.leadingIcon) {
         classes += " mdc-text-field--with-leading-icon";
-        icon = (
-          <i className="material-icons mdc-text-field__icon" tabIndex="0">
-            {iconName}
-          </i>
-        );
+        icon = <Icon name={this.state.leadingIcon} />;
       }
     }
 

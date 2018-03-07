@@ -1,11 +1,28 @@
 import React from "react";
 import { MDCSelect } from "@material/select";
 
+// This ordering is _very important_ for the menu to show up right.
+import "@material/list/dist/mdc.list.min.css";
+import "@material/menu/dist/mdc.menu.min.css";
+import "@material/select/dist/mdc.select.min.css";
+
 import MDCBase from "./base";
 
 export default class Select extends MDCBase {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      box: true
+    };
+  }
+
   getConstructor() {
     return MDCSelect;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ box: nextProps.box !== false });
   }
 
   render() {
@@ -44,8 +61,14 @@ export default class Select extends MDCBase {
       </li>
     ));
 
+    let classes = "mdc-select";
+
+    if (this.state.box) {
+      classes += " mdc-select--box";
+    }
+
     return (
-      <div className="mdc-select" role="listbox">
+      <div className={classes} role="listbox">
         <div className="mdc-select__surface" tabIndex="0">
           <div className="mdc-select__label">{this.props.label}</div>
           <div className="mdc-select__selected-text" />

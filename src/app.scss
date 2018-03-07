@@ -1,14 +1,5 @@
 
-@import "../node_modules/@material/animation/variables";
-@import "../node_modules/@material/layout-grid/mdc-layout-grid";
-@import "../node_modules/@material/menu/mdc-menu";
-@import "../node_modules/@material/select/mdc-select";
-@import "../node_modules/@material/list/mdc-list";
-@import "../node_modules/@material/checkbox/mdc-checkbox";
-@import "../node_modules/@material/form-field/mdc-form-field";
-@import "../node_modules/@material/animation/dist/mdc.animation.min";
-@import "../node_modules/@material/textfield/mdc-text-field.scss";
-@import "../node_modules/@material/typography/mdc-typography";
+@import "../node_modules/@material/theme/variables";
 
 html {
 }
@@ -20,4 +11,9 @@ html {
 .mdc-text-field
 {
   width: 100%;
+}
+
+.stepper-container
+{
+  background-color: $mdc-theme-primary-light;
 }
