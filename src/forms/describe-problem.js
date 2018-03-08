@@ -1,7 +1,7 @@
 import React from "react";
-import Cell from "../components/cell";
 import TextArea from "../components/textarea";
 import CheckBox from "../components/checkbox";
+import Cell from "../components/cell";
 import Grid from "../components/grid";
 
 export default () => (
