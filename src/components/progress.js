@@ -9,22 +9,21 @@ export default class Progress extends MDCBase {
     return MDCLinearProgress;
   }
 
-  updateValue() {
-    console.log(this.props.value, this.props.max);
-    if (this.props.value <= 0 || this.props.max <= 0) {
+  updateValue({ value, max }) {
+    if (value <= 0 || max <= 0) {
       this.mdcObject.progress = 0;
     } else {
-      this.mdcObject.progress = this.props.value / this.props.max;
+      this.mdcObject.progress = value / max;
     }
   }
 
-  componentWillReceiveProps() {
-    this.updateValue();
+  componentWillReceiveProps(nextProps) {
+    this.updateValue(nextProps);
   }
 
   componentDidMount() {
     super.componentDidMount();
-    this.updateValue();
+    this.updateValue(this.props);
   }
 
   render() {

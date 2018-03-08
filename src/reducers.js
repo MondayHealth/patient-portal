@@ -40,7 +40,7 @@ export function page(state = initialPageState, action) {
         return state;
       }
     case INCREMENT_PAGE:
-      if (state.index < state.max) {
+      if (state.index + 1 < state.max) {
         return { ...state, index: state.index + 1 };
       } else {
         return state;
