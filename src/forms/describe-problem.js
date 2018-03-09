@@ -1,23 +1,29 @@
 import React from "react";
-import TextArea from "../components/textarea";
-import CheckBox from "../components/checkbox";
 import Cell from "../components/cell";
 import Grid from "../components/grid";
+import Input from "../components/input";
+import ToggleField from "../components/toggle-field";
+
+const toggleOptions = [
+  "Depression",
+  "Anxiety",
+  "Eating Disorders",
+  "Trauma",
+  "Relationship Issues",
+  "Family Issues",
+  "Career Counseling",
+  "Other..."
+];
 
 export default () => (
   <div>
     <h1 className={"mdc-typography--display3"}>
       Tell us what's bothering you.
     </h1>
+    <ToggleField options={toggleOptions} />
     <Grid>
-      <Cell size={8}>
-        <CheckBox label={"Depression"} />
-        <CheckBox label={"Anxiety"} />
-        <CheckBox label={"Eating Disorders"} />
-        <CheckBox label={"Trauma"} />
-      </Cell>
-      <Cell size={8}>
-        <TextArea label={"Anything else you'd like to say"} />
+      <Cell size={12}>
+        <Input label={"Something else?"} id={"pther"} />
       </Cell>
     </Grid>
   </div>

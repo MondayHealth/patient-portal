@@ -24,6 +24,19 @@ html {
   margin-top: 128px;
 }
 
+.mdc-button._mdc-button-alternate
+{
+  color: white;
+  background-color: $mdc-theme-primary-light;
+}
+
+.circle
+{
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+}
+
 .stepper-container
 {
   background-color: $mdc-theme-primary-light;
