@@ -17,9 +17,7 @@ const toggleOptions = [
 
 export default () => (
   <div>
-    <h1 className={"mdc-typography--display3"}>
-      Tell us what's bothering you.
-    </h1>
+    <h1 className={"mdc-typography--display3"}>What's bothering you?</h1>
     <ToggleField options={toggleOptions} />
     <Grid>
       <Cell size={12}>
