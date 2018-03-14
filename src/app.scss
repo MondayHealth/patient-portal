@@ -21,12 +21,15 @@ html {
 
 .mdc-toolbar-fixed-adjust
 {
-  margin-top: 128px;
 }
 
 main
 {
+  max-width: 768px;
 
+  // This should be conditional!
+  padding-bottom: 64px;
+  margin: 0 auto;
 }
 
 .mdc-button._mdc-button-alternate

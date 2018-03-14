@@ -1,17 +1,11 @@
 import React, { Component } from "react";
 
-import GridList from "./grid-list";
-import Button from "./button";
+import GridList from "../grid-list";
+import Button from "../button";
 
 import "./toggle-field.css";
 
-const sizes = [
-  { size: 3, device: "desktop" },
-  { size: 3, device: "tablet" },
-  { size: 2, device: "phone" }
-];
-
-export default class ToggleField extends Component {
+export class ToggleField extends Component {
   constructor(props) {
     super(props);
 
@@ -30,6 +24,9 @@ export default class ToggleField extends Component {
     const newArray = Array.from(this.state.selected);
     newArray[idx] = !newArray[idx];
     this.setState({ selected: newArray });
+    if (this.props.onChange) {
+      this.props.onChange(newArray);
+    }
   }
 
   render() {
@@ -42,6 +39,7 @@ export default class ToggleField extends Component {
     const elts = options.map((elt, idx) => (
       <Button
         stroked
+        key={idx}
         alternate={!!this.state.selected[idx]}
         onClick={() => this.toggle(idx)}
       >
@@ -51,7 +49,7 @@ export default class ToggleField extends Component {
 
     return (
       <div className={"toggle-field"}>
-        <GridList >{elts}</GridList>
+        <GridList>{elts}</GridList>
       </div>
     );
   }
