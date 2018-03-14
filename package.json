@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "@material/animation": "^0.25.0",
+    "@material/button": "^0.32.0",
     "@material/checkbox": "^0.32.0",
+    "@material/elevation": "^0.28.0",
     "@material/form-field": "^0.32.0",
     "@material/layout-grid": "^0.24.0",
+    "@material/linear-progress": "^0.30.0",
     "@material/list": "^0.32.0",
     "@material/menu": "^0.31.0",
     "@material/select": "^0.32.0",
