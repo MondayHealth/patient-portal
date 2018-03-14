@@ -1,8 +1,11 @@
 .toggle-field
 {
-  .mdc-layout-grid__cell
+  max-width: 768px;
+  .mdc-grid-tile
   {
-    margin: 0 auto;
+    width: 142px;
+    padding-left: 5px;
+    padding-right: 5px;
     .mdc-button
     {
       width: 142px;

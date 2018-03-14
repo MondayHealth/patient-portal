@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
-import Grid from "./grid";
-import Cell from "./cell";
+import GridList from "./grid-list";
 import Button from "./button";
 
 import "./toggle-field.css";
@@ -41,20 +40,18 @@ export default class ToggleField extends Component {
     }
 
     const elts = options.map((elt, idx) => (
-      <Cell sizes={sizes} key={idx}>
-        <Button
-          stroked
-          alternate={!!this.state.selected[idx]}
-          onClick={() => this.toggle(idx)}
-        >
-          {elt}
-        </Button>
-      </Cell>
+      <Button
+        stroked
+        alternate={!!this.state.selected[idx]}
+        onClick={() => this.toggle(idx)}
+      >
+        {elt}
+      </Button>
     ));
 
     return (
       <div className={"toggle-field"}>
-        <Grid>{elts}</Grid>
+        <GridList >{elts}</GridList>
       </div>
     );
   }
