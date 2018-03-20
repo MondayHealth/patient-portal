@@ -42,7 +42,12 @@ export default class Button extends Component {
     }
 
     return (
-      <button className={classes} onClick={this.props.onClick} ref={this.ref}>
+      <button
+        id={this.props.id}
+        className={classes}
+        onClick={this.props.onClick}
+        ref={this.ref}
+      >
         {Button.icon(this.props.leftIcon)}
         {this.props.children}
         {Button.icon(this.props.rightIcon)}

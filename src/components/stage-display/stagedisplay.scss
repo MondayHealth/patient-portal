@@ -1,7 +1,98 @@
-footer
-{
-  .button-container
+@import "../../../node_modules/@material/elevation/mixins";
+@import "../../../node_modules/@material/button/mixins";
+@import "../../../node_modules/@material/ripple/mixins";
+@import "../../../node_modules/@material/theme/variables";
+
+@media (max-width: 768px) {
+  footer
   {
-    justify-self: center;
+    @include mdc-elevation(8);
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: $mdc-theme-background;
+    width: 100%;
+
+    #sd-container
+    {
+      display: flex;
+      align-items: center;
+      height: 68px;
+
+      padding-left: 10px;
+      padding-right: 10px;
+
+      button
+      {
+        width: 125px;
+      }
+
+      .mdc-linear-progress
+      {
+        flex-grow: 2;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+@media (min-width: 769px) {
+  footer
+  {
+    #sd-container
+    {
+      max-width: 768px;
+      height: 64px;
+      margin: 24px auto 0;
+
+      button
+      {
+        width: 150px;
+
+        @include mdc-button--filled_;
+        @include mdc-button-container-fill-color(primary);
+        @include mdc-button-ink-color(text-primary-on-primary);
+        @include mdc-states(text-primary-on-primary);
+      }
+
+      #back
+      {
+        float: left;
+        margin-left: 24px;
+      }
+
+      #next
+      {
+        float: right;
+        margin-right: 24px;
+      }
+
+      .mdc-linear-progress
+      {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 839px) and (min-width: 769px) {
+  footer
+  {
+    #sd-container
+    {
+      #back
+      {
+        float: left;
+        margin-left: 16px;
+      }
+
+      #next
+      {
+        float: right;
+        margin-right: 16px;
+      }
+    }
   }
 }
