@@ -1,6 +1,9 @@
 import React from "react";
 import MDCBase from "./base";
-import { MDCLinearProgress } from "@material/linear-progress";
+
+// MDC doesn't come prebuilt
+// noinspection ES6CheckImport
+import { MDCLinearProgress } from "@material/linear-progress/dist/mdc.linearProgress.min";
 
 import "@material/linear-progress/dist/mdc.linear-progress.min.css";
 

@@ -1,5 +1,8 @@
 import React from "react";
-import { MDCSelect } from "@material/select";
+
+// MDC doesn't come prebuilt
+// noinspection ES6CheckImport
+import { MDCSelect } from "@material/select/dist/mdc.select.min";
 
 // This ordering is _very important_ for the menu to show up right.
 import "@material/list/dist/mdc.list.min.css";

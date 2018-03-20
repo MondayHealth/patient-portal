@@ -1,5 +1,8 @@
 import React from "react";
-import { MDCGridList } from "@material/grid-list";
+
+// MDC doesn't come prebuilt
+// noinspection ES6CheckImport
+import { MDCGridList } from "@material/grid-list/dist/mdc.gridList.min";
 
 import MDCBase from "./base";
 

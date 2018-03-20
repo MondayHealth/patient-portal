@@ -1,6 +1,9 @@
 import React from "react";
 import MDCBase from "./base";
-import { MDCTextField } from "@material/textfield";
+
+// MDC doesn't come prebuilt
+// noinspection ES6CheckImport
+import { MDCTextField } from "@material/textfield/dist/mdc.textfield.min";
 
 import "@material/textfield/dist/mdc.textfield.min.css";
 import "@material/form-field/dist/mdc.form-field.min.css";

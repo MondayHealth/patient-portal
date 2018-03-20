@@ -13,6 +13,7 @@
     "@material/linear-progress": "^0.30.0",
     "@material/list": "^0.32.0",
     "@material/menu": "^0.31.0",
+    "@material/ripple": "^0.33.0",
     "@material/select": "^0.32.0",
     "@material/textfield": "^0.32.0",
     "@material/theme": "^0.30.0",

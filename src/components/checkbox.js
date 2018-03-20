@@ -1,6 +1,9 @@
 import React from "react";
 import MDCBase from "./base";
-import { MDCCheckbox } from "@material/checkbox";
+
+// MDC doesn't come prebuilt
+// noinspection ES6CheckImport
+import { MDCCheckbox } from "@material/checkbox/dist/mdc.checkbox.min";
 
 import "@material/checkbox/dist/mdc.checkbox.min.css";
 

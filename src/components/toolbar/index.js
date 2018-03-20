@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MDCToolbar } from "@material/toolbar";
+import { MDCToolbar } from "@material/toolbar/dist/mdc.toolbar.min";
 import MDCBase from "../base";
 import { connect } from "react-redux";
 

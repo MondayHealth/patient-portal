@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
-import { MDCRipple } from "@material/ripple";
+// MDC doesn't come prebuilt
+// noinspection ES6CheckImport
+import { MDCRipple } from "@material/ripple/dist/mdc.ripple.min";
 
 import "@material/button/dist/mdc.button.min.css";
 
