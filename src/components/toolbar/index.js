@@ -1,10 +1,11 @@
 import React from "react";
 
 import { MDCToolbar } from "@material/toolbar";
-import MDCBase from "./base";
+import MDCBase from "../base";
 import { connect } from "react-redux";
 
 import "@material/toolbar/dist/mdc.toolbar.min.css";
+import "./toolbar.css";
 
 function indicatorForState(state) {
   switch (state) {

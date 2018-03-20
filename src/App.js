@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Patient from "./forms/patient";
 import DescribeProblem from "./forms/describe-problem";
 import Provider from "./forms/provider";
-import ToolBar from "./components/toolbar";
+import ToolBar from "./components/toolbar/index";
 import StageDisplay from "./components/stage-display";
 
 import "./app.css";
