@@ -4,7 +4,7 @@ import "@material/layout-grid/dist/mdc.layout-grid.min.css";
 
 const SPAN_PREFIX = " mdc-layout-grid__cell--span-";
 
-export default ({ size, children, align, sizes }) => {
+export default ({ size, children, align, sizes, className }) => {
   let classes = "mdc-layout-grid__cell";
 
   if (size) {
@@ -21,6 +21,13 @@ export default ({ size, children, align, sizes }) => {
 
   if (align) {
     classes += " mdc-layout-grid__cell--align-" + align;
+  }
+
+  if (className) {
+    const c = className.trim();
+    if (c) {
+      classes += " " + className.trim();
+    }
   }
 
   return <div className={classes}>{children}</div>;

@@ -3,7 +3,7 @@ import Patient from "./forms/patient";
 import DescribeProblem from "./forms/describe-problem";
 import Provider from "./forms/provider";
 import ToolBar from "./components/toolbar";
-import StageDisplay from "./forms/stage-display";
+import StageDisplay from "./components/stage-display";
 
 import "./app.css";
 import { decrementPage, incrementPage, setPage, setPageMax } from "./actions";

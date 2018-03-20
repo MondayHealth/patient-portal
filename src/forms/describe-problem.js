@@ -3,8 +3,9 @@ import Cell from "../components/cell";
 import Grid from "../components/grid";
 import Input from "../components/input";
 import { ToggleField } from "../components/toggle-field";
+import { Title } from "./title";
 
-const toggleOptions = [
+const options = [
   "Depression",
   "Anxiety",
   "Eating Disorders",
@@ -32,17 +33,15 @@ export default class DescribeProblem extends Component {
   render() {
     const other = !this.state.inputVisible ? null : (
       <Cell size={12}>
-        <Input label={"What else is going on?"} id={"other"} />
+        <Input label={"Let us know in your own words"} id={"other"} />
       </Cell>
     );
 
     return (
       <Grid>
+        <Title>What's bothering you?</Title>
         <Cell size={12}>
-          <h1 className={"mdc-typography--display3"}>What's bothering you?</h1>
-        </Cell>
-        <Cell size={12}>
-          <ToggleField options={toggleOptions} onChange={this.togglesChanged} />
+          <ToggleField options={options} onChange={this.togglesChanged} />
         </Cell>
         {other}
       </Grid>

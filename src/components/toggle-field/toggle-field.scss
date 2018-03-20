@@ -1,14 +1,23 @@
+
+$bg-color: whitesmoke;
+
 .toggle-field
 {
+  background: $bg-color;
+  padding-bottom: 30px;
+  padding-top: 30px;
+
   .mdc-grid-tile
   {
     width: 142px;
     padding-left: 5px;
     padding-right: 5px;
+    background-color: $bg-color;
+
     .mdc-button
     {
-      width: 142px;
-      height: 64px;
+      width: 100%;
+      height: 100%;
       line-height: 18px;
     }
   }

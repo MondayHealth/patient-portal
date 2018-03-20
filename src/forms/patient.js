@@ -5,12 +5,11 @@ import NumberInput from "../components/number-input";
 import Cell from "../components/cell";
 import Select from "../components/select";
 import Grid from "../components/grid";
+import { Title } from "./title";
 
 export default () => (
   <Grid>
-    <Cell size={12}>
-      <h1 className={"mdc-typography--display3"}>Getting to know you</h1>
-    </Cell>
+    <Title>Tell us about yourself</Title>
     <Cell size={4}>
       <Input label={"First Name"} id={"first"} />
     </Cell>

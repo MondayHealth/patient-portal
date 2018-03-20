@@ -16,11 +16,12 @@ html {
 .mdc-select--box
 {
   margin-top: 16px;
+  margin-bottom: 8px;
   width: 100%;
 }
 
-.mdc-toolbar-fixed-adjust
-{
+.mdc-toolbar--flexible {
+  --mdc-toolbar-ratio-to-extend-flexible: 0;
 }
 
 main
@@ -30,6 +31,11 @@ main
   // This should be conditional!
   padding-bottom: 64px;
   margin: 0 auto;
+}
+
+main.mdc-toolbar-fixed-adjust
+{
+  margin-top: 113px;
 }
 
 .mdc-button._mdc-button-alternate
@@ -99,6 +105,20 @@ main
   .circle {
     background-color: #009c00;
     color: white;
+  }
+}
+
+@media (max-width: 580px) {
+
+  ._mdc-toolbar__sub-section.complete,
+  ._mdc-toolbar__sub-section.incomplete
+  {
+    display: none;
+  }
+
+  .circle
+  {
+    display: none;
   }
 }
 

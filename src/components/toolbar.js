@@ -1,9 +1,10 @@
 import React from "react";
 
-import "@material/toolbar/dist/mdc.toolbar.min.css";
 import { MDCToolbar } from "@material/toolbar";
 import MDCBase from "./base";
 import { connect } from "react-redux";
+
+import "@material/toolbar/dist/mdc.toolbar.min.css";
 
 function indicatorForState(state) {
   switch (state) {
@@ -42,12 +43,7 @@ function getState(idx, activePage) {
   if (idx === activePage) {
     return "active";
   }
-
-  if (idx > activePage) {
-    return "incomplete";
-  }
-
-  return "complete";
+  return idx < activePage ? "complete" : "incomplete";
 }
 
 const StepperContainer = ({ activePage }) => {
@@ -59,6 +55,17 @@ const StepperContainer = ({ activePage }) => {
   return <div className="stepper-container mdc-toolbar__row">{elts}</div>;
 };
 
+const TOOLBAR_CLASSES = [
+  "mdc-toolbar",
+  "mdc-toolbar--fixed",
+  "mdc-toolbar--waterfall",
+  "mdc-toolbar--fixed-lastrow-only",
+  "mdc-toolbar--flexible",
+  "mdc-toolbar--flexible-default-behavior",
+  "mdc-toolbar--flexible-space-minimized",
+  "mdc-toolbar--fixed-at-last-row"
+].join(" ");
+
 class ToolBar extends MDCBase {
   getConstructor() {
     return MDCToolbar;
@@ -67,13 +74,8 @@ class ToolBar extends MDCBase {
   render() {
     const title = "Monday";
 
-    let classes = "mdc-toolbar";
-    classes += " mdc-toolbar--fixed";
-    classes += " mdc-toolbar--waterfall";
-    classes += " mdc-toolbar--fixed-lastrow-only";
-
     return (
-      <header className={classes}>
+      <header className={TOOLBAR_CLASSES}>
         <div id="top-toolbar" className="mdc-toolbar__row">
           <section className="mdc-toolbar__section">
             <span className="mdc-toolbar__title">{title}</span>
