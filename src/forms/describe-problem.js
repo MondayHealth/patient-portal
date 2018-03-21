@@ -13,7 +13,7 @@ const options = [
   "Relationship Issues",
   "Family Issues",
   "Career Counseling",
-  "Other..."
+  "Something else ..."
 ];
 
 export default class DescribeProblem extends Component {
@@ -33,13 +33,16 @@ export default class DescribeProblem extends Component {
   render() {
     const other = !this.state.inputVisible ? null : (
       <Cell size={12}>
-        <Input label={"Let us know in your own words"} id={"other"} />
+        <Input label={"Tell us in your own words"} id={"other"} />
       </Cell>
     );
 
     return (
       <Grid>
-        <Title>What's bothering you?</Title>
+        <Title text={"What's bothering you?"}>
+          Select as many of the following things you'd like to talk to a
+          therapist about:
+        </Title>
         <Cell size={12}>
           <ToggleField options={options} onChange={this.togglesChanged} />
         </Cell>

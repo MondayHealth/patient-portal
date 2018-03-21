@@ -1,40 +1,22 @@
+import React from "react";
 import Input from "./input";
 
-export default class NumberInput extends Input {
-  validate() {
-    const raw = (this.mdcObject.value || "").trim();
+export function validate(value) {
+  const raw = (value || "").trim();
 
-    if (!raw) {
-      this.mdcObject.valid = true;
-      return;
-    }
-
-    const intVal = parseInt(raw, 10);
-
-    if (isNaN(intVal) || intVal === null) {
-      this.mdcObject.valid = false;
-      return;
-    }
-
-    if (this.props.min && intVal < this.props.min) {
-      this.mdcObject.valid = false;
-      return;
-    }
+  if (!raw) {
+    return true;
   }
 
-  getInputAttributes() {
-    const ret = {
-      type: "number",
-      onChange: this.validate.bind(this)
-    };
+  const intVal = parseInt(raw, 10);
 
-    if (this.props.min) {
-      ret.min = this.props.min;
-    }
-
-    if (this.props.max) {
-      ret.max = this.props.max;
-    }
-    return ret;
+  if (isNaN(intVal) || intVal === null) {
+    return false;
   }
+
+  return !(this.props.min && intVal < this.props.min);
 }
+
+export default params => (
+  <Input {...params} type={"number"} validator={validate} />
+);

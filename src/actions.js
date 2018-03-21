@@ -19,3 +19,8 @@ export const SET_PAGE_MAX = "SET_PAGE_MAX";
 export function setPageMax(max) {
   return { type: SET_PAGE_MAX, max };
 }
+
+export const UPDATE_FIELD = "UPDATE_FIELD";
+export function updateField(key, value) {
+  return { type: UPDATE_FIELD, key, value };
+}

@@ -1,22 +1,26 @@
+import React, { Component } from "react";
 // noinspection ES6CheckImport
 import PhoneNumberFormat, { PhoneNumberUtil } from "google-libphonenumber";
 
 import Input from "./input";
 
-export default class PhoneInput extends Input {
+const FORMAT = PhoneNumberFormat.NATIONAL;
+
+export default class PhoneInput extends Component {
   constructor(props) {
     super(props);
     this.phoneUtil = PhoneNumberUtil.getInstance();
     this.currentNumber = null;
+    this.validate = this.validate.bind(this);
+    this.format = this.format.bind(this);
   }
 
-  validate() {
-    const raw = (this.mdcObject.value || "").trim();
+  validate(value) {
+    const raw = (value || "").trim();
 
     if (!raw) {
-      this.mdcObject.valid = true;
       this.currentNumber = null;
-      return;
+      return true;
     }
 
     let number, valid;
@@ -27,28 +31,20 @@ export default class PhoneInput extends Input {
       valid = false;
     } finally {
       this.currentNumber = valid ? number : null;
-      this.mdcObject.valid = valid;
     }
+
+    return valid;
   }
 
-  format() {
+  format(mdcObject) {
     if (this.currentNumber) {
-      this.mdcObject.value = this.phoneUtil.format(
-        this.currentNumber,
-        PhoneNumberFormat.NATIONAL
-      );
+      mdcObject.value = this.phoneUtil.format(this.currentNumber, FORMAT);
     }
   }
 
-  getNationalNumber() {
-    return this.currentNumber ? this.currentNumber.getNationalNumber() : null;
-  }
-
-  getInputAttributes() {
-    return {
-      type: "tel",
-      onChange: this.validate.bind(this),
-      onBlur: this.format.bind(this)
-    };
+  render() {
+    return (
+      <Input {...this.props} onBlur={this.format} validator={this.validate} />
+    );
   }
 }

@@ -3,6 +3,7 @@ import {
   INCREMENT_PAGE,
   SET_PAGE,
   SET_PAGE_MAX,
+  UPDATE_FIELD,
   USER_ACTION
 } from "./actions";
 
@@ -54,4 +55,15 @@ export function page(state = initialPageState, action) {
     default:
       return state;
   }
+}
+
+const initialFieldState = {};
+
+// noinspection JSUnusedGlobalSymbols
+export function formFields(state = initialFieldState, action) {
+  if (!action.type || action.type !== UPDATE_FIELD) {
+    return state;
+  }
+
+  return { ...state, [action.key]: action.value };
 }
