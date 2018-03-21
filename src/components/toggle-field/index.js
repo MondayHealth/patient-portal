@@ -1,16 +1,18 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import GridList from "../grid-list";
 import Button from "../button";
 
 import "./toggle-field.css";
+import { updateField } from "../../actions";
 
-export class ToggleField extends Component {
+class ToggleField extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selected: new Array(0)
+      selected: new Array(this.props.options ? this.props.options.length : 0)
     };
   }
 
@@ -20,13 +22,35 @@ export class ToggleField extends Component {
     }
   }
 
+  componentWillMount() {
+    const id = this.props.id;
+
+    if (!id) {
+      throw new Error("ToggleField must have an ID");
+    }
+
+    const existing = this.props.formFields[id];
+    if (existing) {
+      this.setState({ selected: existing.map(val => !!val) });
+    }
+  }
+
   toggle(idx) {
     const newArray = Array.from(this.state.selected);
     newArray[idx] = !newArray[idx];
-    this.setState({ selected: newArray });
+
+    // Elevate state
+    this.props.update(
+      this.props.id,
+      newArray.map((val, idx) => (val ? this.props.options[idx] : false))
+    );
+
     if (this.props.onChange) {
       this.props.onChange(newArray);
     }
+
+    // Save state locally
+    this.setState({ selected: newArray });
   }
 
   render() {
@@ -54,3 +78,15 @@ export class ToggleField extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return { formFields: state.formFields };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    update: (key, value) => dispatch(updateField(key, value))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToggleField);
