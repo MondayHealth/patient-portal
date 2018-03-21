@@ -1,17 +1,17 @@
 import React from "react";
-
+import { connect } from "react-redux";
 // MDC doesn't come prebuilt
 // noinspection ES6CheckImport
 import { MDCSelect } from "@material/select/dist/mdc.select.min";
-
 // This ordering is _very important_ for the menu to show up right.
 import "@material/list/dist/mdc.list.min.css";
 import "@material/menu/dist/mdc.menu.min.css";
 import "@material/select/dist/mdc.select.min.css";
 
 import MDCBase from "./base";
+import { updateField } from "../actions";
 
-export default class Select extends MDCBase {
+class Select extends MDCBase {
   constructor(props) {
     super(props);
 
@@ -26,6 +26,25 @@ export default class Select extends MDCBase {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ box: nextProps.box !== false });
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+
+    if (!this.props.id) {
+      throw new Error("Must specify an ID for select components.");
+    }
+
+    this.mdcObject.listen("MDCSelect:change", () => {
+      this.props.update(this.props.id, this.mdcObject.value);
+    });
+
+    const existingValue = this.props.formFields[this.props.id];
+    if (existingValue) {
+      this.mdcObject.selectedIndex = this.props.options.indexOf(existingValue);
+    } else if (this.props.defaultValue) {
+      this.mdcObject.selectedIndex = this.props.defaultValue;
+    }
   }
 
   render() {
@@ -84,3 +103,15 @@ export default class Select extends MDCBase {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return { formFields: state.formFields };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    update: (key, value) => dispatch(updateField(key, value))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Select);

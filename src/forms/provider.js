@@ -25,6 +25,8 @@ export default class Provider extends Component {
           <Select
             label={"Gender"}
             options={["No Preference", "Male", "Female", "Other"]}
+            defaultValue={0}
+            id={"provider-gender"}
           />
         </Cell>
         <Cell size={12}>

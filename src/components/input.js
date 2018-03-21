@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { updateField } from "../actions";
 // MDC doesn't come prebuilt
 // noinspection ES6CheckImport
-import { MDCTextField } from "@material/textfield";
+import { MDCTextField } from "@material/textfield/dist/mdc.textfield.min";
 
 import "@material/textfield/dist/mdc.textfield.min.css";
 import "@material/form-field/dist/mdc.form-field.min.css";
@@ -70,6 +70,11 @@ class Input extends MDCBase {
 
   componentDidMount() {
     super.componentDidMount();
+
+    if (!this.props.id) {
+      throw new Error("Must specify an ID for input components.");
+    }
+
     const existingValue = this.props.formFields[this.props.id];
     if (existingValue) {
       this.mdcObject.value = existingValue;

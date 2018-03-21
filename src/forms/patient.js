@@ -32,7 +32,11 @@ export default () => (
     </Cell>
 
     <Cell size={3}>
-      <Select label={"Gender"} options={["Male", "Female", "Other"]} />
+      <Select
+        label={"Gender"}
+        id={"patient-gender"}
+        options={["Male", "Female", "Other"]}
+      />
     </Cell>
     <Cell size={2}>
       <Input label={"Zip Code"} id={"zip"} />
