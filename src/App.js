@@ -4,6 +4,7 @@ import DescribeProblem from "./forms/describe-problem";
 import Provider from "./forms/provider";
 import ToolBar from "./components/toolbar/index";
 import StageDisplay from "./components/stage-display";
+import Submitted from "./forms/submitted";
 
 import "./app.css";
 import { decrementPage, incrementPage, setPage, setPageMax } from "./actions";
@@ -13,7 +14,12 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.pages = [<DescribeProblem />, <Provider />, <Patient />];
+    this.pages = [
+      <DescribeProblem />,
+      <Provider />,
+      <Patient />,
+      <Submitted />
+    ];
     this.props.setPageMax(this.pages.length);
   }
 
@@ -24,12 +30,14 @@ class App extends Component {
         <main className="mdc-toolbar-fixed-adjust">
           {this.pages[this.props.currentPage]}
         </main>
-        <StageDisplay
-          current={this.props.currentPage}
-          max={this.pages.length}
-          prev={this.props.prevPage}
-          next={this.props.nextPage}
-        />
+        {this.props.currentPage < this.pages.length - 1 ? (
+          <StageDisplay
+            current={this.props.currentPage}
+            max={this.pages.length}
+            prev={this.props.prevPage}
+            next={this.props.nextPage}
+          />
+        ) : null}
       </div>
     );
   }

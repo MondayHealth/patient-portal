@@ -23,6 +23,9 @@ function indicatorForState(state) {
         </div>
       );
 
+    case "submitted":
+      return null;
+
     default:
       return <div className={"circle"} />;
   }
@@ -48,12 +51,23 @@ function getState(idx, activePage) {
 }
 
 const StepperContainer = ({ activePage }) => {
+  let classes = "stepper-container mdc-toolbar__row";
+
+  if (activePage === sections.length) {
+    return (
+      <div className={classes}>
+        <ToolBarSection state={"submitted"}>Thank you</ToolBarSection>
+      </div>
+    );
+  }
+
   const elts = sections.map((val, idx) => (
     <ToolBarSection key={idx} state={getState(idx, activePage)}>
       {val}
     </ToolBarSection>
   ));
-  return <div className="stepper-container mdc-toolbar__row">{elts}</div>;
+
+  return <div className={classes}>{elts}</div>;
 };
 
 const TOOLBAR_CLASSES = [

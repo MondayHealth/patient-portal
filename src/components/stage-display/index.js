@@ -13,7 +13,7 @@ export default ({ current, max, prev, next }) => (
       </Button>
       <Progress max={max} value={current + 1} />
       <Button id="next" onClick={next}>
-        {current === max - 1 ? "Submit" : "Next"}
+        {current === max - 2 ? "Submit" : "Next"}
       </Button>
     </div>
   </footer>
