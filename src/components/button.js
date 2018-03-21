@@ -48,6 +48,7 @@ export default class Button extends Component {
         id={this.props.id}
         className={classes}
         onClick={this.props.onClick}
+        disabled={!!this.props.disabled}
         ref={this.ref}
       >
         {Button.icon(this.props.leftIcon)}

@@ -8,12 +8,12 @@ import "@material/elevation/dist/mdc.elevation.min.css";
 export default ({ current, max, prev, next }) => (
   <footer>
     <div id={"sd-container"}>
-      <Button id="back" onClick={prev}>
+      <Button disabled={current === 0} id="back" onClick={prev}>
         Back
       </Button>
       <Progress max={max} value={current + 1} />
       <Button id="next" onClick={next}>
-        Next
+        {current === max - 1 ? "Submit" : "Next"}
       </Button>
     </div>
   </footer>
