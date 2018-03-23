@@ -7,7 +7,13 @@ import StageDisplay from "./components/stage-display";
 import Submitted from "./forms/submitted";
 
 import "./app.css";
-import { decrementPage, incrementPage, setPage, setPageMax } from "./actions";
+import {
+  decrementPage,
+  incrementPage,
+  setPage,
+  setPageMax,
+  submit
+} from "./actions";
 import { connect } from "react-redux";
 
 class App extends Component {
@@ -23,6 +29,20 @@ class App extends Component {
     this.props.setPageMax(this.pages.length);
   }
 
+  sheetSubmit(data) {
+    const cleaned = { ...data };
+    cleaned.problem = data.problem.filter(val => !!val);
+    this.props.submit(cleaned);
+  }
+
+  nextClick() {
+    if (this.props.currentPage === this.pages.length - 2) {
+      this.sheetSubmit(this.props.formFields);
+    }
+
+    this.props.nextPage();
+  }
+
   render() {
     return (
       <div className="app">
@@ -35,7 +55,7 @@ class App extends Component {
             current={this.props.currentPage}
             max={this.pages.length}
             prev={this.props.prevPage}
-            next={this.props.nextPage}
+            next={this.nextClick.bind(this)}
           />
         ) : null}
       </div>
@@ -45,7 +65,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentPage: state.page.index
+    currentPage: state.page.index,
+    formFields: state.formFields
   };
 };
 
@@ -54,7 +75,8 @@ const mapDispatchToProps = dispatch => {
     setPage: idx => dispatch(setPage(idx)),
     nextPage: () => dispatch(incrementPage()),
     prevPage: () => dispatch(decrementPage()),
-    setPageMax: max => dispatch(setPageMax(max))
+    setPageMax: max => dispatch(setPageMax(max)),
+    submit: submit(dispatch)
   };
 };
 

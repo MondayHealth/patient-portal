@@ -24,3 +24,30 @@ export const UPDATE_FIELD = "UPDATE_FIELD";
 export function updateField(key, value) {
   return { type: UPDATE_FIELD, key, value };
 }
+
+export const SUBMIT_BEGIN = "SUBMIT_BEGIN";
+function submitAction(values) {
+  return { type: SUBMIT_BEGIN, values: values };
+}
+
+export const SUBMIT_ERROR = "SUBMIT_ERROR";
+function submitError(error) {
+  return { type: SUBMIT_ERROR, error: error };
+}
+
+export const SUBMIT_SUCCESS = "SUBMIT_SUCCESS";
+function submitSuccess() {
+  return { type: SUBMIT_SUCCESS };
+}
+
+const endpoint = "//j1g9ep3197.execute-api.us-east-2.amazonaws.com/prod/submit";
+
+export function submit(dispatch) {
+  return function submitClosure(values) {
+    dispatch(submitAction(values));
+
+    console.log("submitting", endpoint);
+
+    dispatch(submitError("not implemented"));
+  };
+}

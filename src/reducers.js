@@ -3,6 +3,10 @@ import {
   INCREMENT_PAGE,
   SET_PAGE,
   SET_PAGE_MAX,
+  SUBMIT,
+  SUBMIT_BEGIN,
+  SUBMIT_ERROR,
+  SUBMIT_SUCCESS,
   UPDATE_FIELD,
   USER_ACTION
 } from "./actions";
@@ -66,4 +70,27 @@ export function formFields(state = initialFieldState, action) {
   }
 
   return { ...state, [action.key]: action.value };
+}
+
+const initialSubmissionState = {
+  state: "unsubmitted",
+  values: null
+};
+
+// noinspection JSUnusedGlobalSymbols
+export function submission(state = initialSubmissionState, action) {
+  if (!action.type) {
+    return state;
+  }
+
+  switch (action.type) {
+    case SUBMIT_BEGIN:
+      return { ...state, state: "submitted", values: action.values };
+    case SUBMIT_ERROR:
+      return { ...state, state: "error", error: action.error };
+    case SUBMIT_SUCCESS:
+      return { ...state, state: "success" };
+    default:
+      return state;
+  }
 }
