@@ -39,6 +39,10 @@ class Submitted extends Component {
           makes the process take between 24 and 48 hours (a bit slower than we'd
           like) but rest assured we'll get in touch with you soon.
         </Title>
+        <Cell size={12}>
+          No personal information will be saved on this website as a result of
+          filling out this form, so feel free to close this tab now 😀
+        </Cell>
       </Grid>
     );
   }
