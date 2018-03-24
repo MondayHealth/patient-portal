@@ -46,10 +46,12 @@ export function post(data) {
   const request = new XMLHttpRequest();
   request.open("POST", SUBMIT_ENDPOINT, true);
 
+  request.setRequestHeader("Content-type", "application/json");
+
   return new Promise((resolve, reject) => {
     request.onload = () =>
       request.status >= 200 && request.status < 400
-        ? resolve(request.status)
+        ? resolve(request.responseText)
         : reject(request.status);
 
     request.onerror = () => reject(-1);
@@ -63,7 +65,14 @@ export function submit(dispatch) {
     dispatch(submitAction(values));
 
     return post(JSON.stringify(values))
-      .then(result => dispatch(submitSuccess(result)))
+      .then(result => {
+        const parsed = JSON.parse(result);
+        if (!parsed || parsed.success !== true) {
+          dispatch(submitError("invalid response: " + result));
+        } else {
+          dispatch(submitSuccess(result));
+        }
+      })
       .catch(error => dispatch(submitError(error)));
   };
 }

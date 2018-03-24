@@ -48,5 +48,7 @@ main
 
   .error {
     color: #7b7b7b;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }

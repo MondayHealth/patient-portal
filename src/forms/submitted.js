@@ -35,10 +35,9 @@ class Submitted extends Component {
     return (
       <Grid>
         <Title text={"We'll be in touch soon!"}>
-          We're just starting out, so a human reviews every match for quality.
-          This makes the process take between 24 and 48 hours, which is a bit
-          slower than we'd like, but rest assured we'll get in touch with you
-          soon.
+          We're just starting out, so we review every match for quality. This
+          makes the process take between 24 and 48 hours (a bit slower than we'd
+          like) but rest assured we'll get in touch with you soon.
         </Title>
       </Grid>
     );
