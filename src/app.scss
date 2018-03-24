@@ -36,3 +36,17 @@ main
   }
 }
 
+.submit-error
+{
+  background-color: #ececec;
+  padding: 5px 25px 25px;
+
+  .frame {
+    font-size: 18px;
+    color: #a0a0a0;
+  }
+
+  .error {
+    color: #7b7b7b;
+  }
+}

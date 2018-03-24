@@ -40,14 +40,30 @@ function submitSuccess() {
   return { type: SUBMIT_SUCCESS };
 }
 
-const endpoint = "//j1g9ep3197.execute-api.us-east-2.amazonaws.com/prod/submit";
+const SUBMIT_ENDPOINT = "https://api.monday.health/patient/submit";
+
+export function post(data) {
+  const request = new XMLHttpRequest();
+  request.open("POST", SUBMIT_ENDPOINT, true);
+
+  return new Promise((resolve, reject) => {
+    request.onload = () =>
+      request.status >= 200 && request.status < 400
+        ? resolve(request.status)
+        : reject(request.status);
+
+    request.onerror = () => reject(-1);
+
+    request.send(data);
+  });
+}
 
 export function submit(dispatch) {
   return function submitClosure(values) {
     dispatch(submitAction(values));
 
-    console.log("submitting", endpoint);
-
-    dispatch(submitError("not implemented"));
+    return post(JSON.stringify(values))
+      .then(result => dispatch(submitSuccess(result)))
+      .catch(error => dispatch(submitError(error)));
   };
 }

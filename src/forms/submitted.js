@@ -2,11 +2,37 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Grid from "../components/grid";
 import { Title } from "./title";
+import Cell from "../components/cell";
 
 class Submitted extends Component {
-  constructor(props) {
-    super(props);
-    this.success = (
+  static getError(text) {
+    return (
+      <Grid>
+        <Title text={"Something went wrong"}>
+          It seems like your info couldn't be submitted this time. We're really
+          sorry for any inconvenience.
+        </Title>
+        <Cell size={12}>
+          Please feel free to refresh and try again but note that because we
+          value discretion you'll have to reenter your information. If you've
+          already done that, or would rather not, please{" "}
+          <a href={"mailto:chris@mondayhealth.com"}>email me</a> and let me know
+          something is broken. If you don't know what to say, anything from a
+          screen shot to an essay will do!
+        </Cell>
+        <Cell size={12} />
+        <Cell className={"submit-error"} size={12}>
+          <p className={"frame"}>
+            The technical issue encountered has something to do with this:
+          </p>
+          <p className={"error"}>{text}</p>
+        </Cell>
+      </Grid>
+    );
+  }
+
+  static getSuccess() {
+    return (
       <Grid>
         <Title text={"We'll be in touch soon!"}>
           We're just starting out, so a human reviews every match for quality.
@@ -18,16 +44,24 @@ class Submitted extends Component {
     );
   }
 
+  static getWaiting() {
+    return (
+      <Grid>
+        <Title text={"Submitting..."}>This should only take a sec'.</Title>
+      </Grid>
+    );
+  }
+
   render() {
     switch (this.props.submission.state) {
       case "success":
-        return this.success;
+        return Submitted.getSuccess();
       case "error":
-        return <p>{this.props.submission.error}</p>;
+        return Submitted.getError(this.props.submission.error);
       default:
         break;
     }
-    return <p>Waiting...</p>;
+    return Submitted.getWaiting();
   }
 }
 
