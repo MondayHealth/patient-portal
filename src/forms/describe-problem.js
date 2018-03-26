@@ -31,7 +31,14 @@ class DescribeProblem extends Component {
 
   updateFromToggleState(toggleState) {
     const inputVisible = toggleState && toggleState[toggleState.length - 1];
-    this.setState({ inputVisible });
+
+    const scroll = inputVisible && this.state.inputVisible !== inputVisible;
+
+    this.setState({ inputVisible }, () => {
+      if (scroll) {
+        window.scrollTo(0, document.body.scrollHeight);
+      }
+    });
 
     if (!inputVisible) {
       this.props.setValid(true, OTHER_ID);
