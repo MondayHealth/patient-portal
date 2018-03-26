@@ -39,7 +39,7 @@ export default () => (
       />
     </Cell>
     <Cell size={2}>
-      <NumberInput label={"Zip Code"} id={"zip"} />
+      <NumberInput max={99999} label={"Zip Code"} id={"zip"} />
     </Cell>
 
     <Cell size={10}>
