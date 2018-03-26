@@ -5,7 +5,7 @@ import GridList from "../grid-list";
 import Button from "../button";
 
 import "./toggle-field.css";
-import { updateField } from "../../actions";
+import { fieldValidity, updateField } from "../../actions";
 
 class ToggleField extends Component {
   constructor(props) {
@@ -22,6 +22,22 @@ class ToggleField extends Component {
     }
   }
 
+  updateSelectionState(newSelection, fxn) {
+    let anythingSelected = false;
+    const ret = newSelection.map((val, idx) => {
+      const ret = fxn(val, idx);
+      if (ret) {
+        anythingSelected = true;
+      }
+      return ret;
+    });
+    this.setState({ selected: ret });
+
+    this.props.setValid(anythingSelected, this.props.id);
+
+    return ret;
+  }
+
   componentWillMount() {
     const id = this.props.id;
 
@@ -31,7 +47,7 @@ class ToggleField extends Component {
 
     const existing = this.props.formFields[id];
     if (existing) {
-      this.setState({ selected: existing.map(val => !!val) });
+      this.updateSelectionState(existing, val => !!val);
     }
   }
 
@@ -39,18 +55,13 @@ class ToggleField extends Component {
     const newArray = Array.from(this.state.selected);
     newArray[idx] = !newArray[idx];
 
-    // Elevate state
-    this.props.update(
-      this.props.id,
-      newArray.map((val, idx) => (val ? this.props.options[idx] : false))
+    const ret = this.updateSelectionState(
+      newArray,
+      (val, idx) => (val ? this.props.options[idx] : false)
     );
 
-    if (this.props.onChange) {
-      this.props.onChange(newArray);
-    }
-
-    // Save state locally
-    this.setState({ selected: newArray });
+    // Elevate state
+    this.props.update(this.props.id, ret);
   }
 
   render() {
@@ -85,7 +96,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    update: (key, value) => dispatch(updateField(key, value))
+    update: (key, value) => dispatch(updateField(key, value)),
+    setValid: (valid, name) => dispatch(fieldValidity(valid, name))
   };
 };
 

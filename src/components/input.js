@@ -2,7 +2,7 @@ import React from "react";
 import MDCBase from "./base";
 import { Icon } from "./icon";
 import { connect } from "react-redux";
-import { updateField } from "../actions";
+import { fieldValidity, updateField } from "../actions";
 // MDC doesn't come prebuilt
 // noinspection ES6CheckImport
 import { MDCTextField } from "@material/textfield/dist/mdc.textfield.min";
@@ -44,13 +44,22 @@ class Input extends MDCBase {
     return MDCTextField;
   }
 
-  onChange(evt) {
-    if (this.props.validator) {
-      this.mdcObject.valid = this.props.validator.call(
-        this,
-        this.mdcObject.value
-      );
+  validate() {
+    const value = this.mdcObject.value.trim();
+
+    if (this.props.required && !value) {
+      this.mdcObject.valid = false;
+    } else if (this.props.validator) {
+      this.mdcObject.valid = this.props.validator.call(this, value);
+    } else {
+      this.mdcObject.valid = true;
     }
+
+    this.props.setValid(this.mdcObject.valid, this.props.id);
+  }
+
+  onChange(evt) {
+    this.validate();
 
     if (this.props.onChange) {
       this.props.onChange(evt);
@@ -78,17 +87,17 @@ class Input extends MDCBase {
     const existingValue = this.props.formFields[this.props.id];
     if (existingValue) {
       this.mdcObject.value = existingValue;
-      if (this.props.validator) {
-        this.mdcObject.valid = this.props.validator.call(this, existingValue);
-      }
     }
+
+    this.validate();
   }
 
   generateParams() {
     const newParams = {
       id: this.props.id,
       type: this.props.type || "text",
-      className: "mdc-text-field__input"
+      className: "mdc-text-field__input",
+      onChange: this.onChange
     };
 
     if (this.props.min) {
@@ -101,12 +110,6 @@ class Input extends MDCBase {
 
     if (this.props.max) {
       newParams.max = this.props.max;
-    }
-
-    if (this.props.onChange || this.props.validator) {
-      newParams.onChange = this.onChange;
-    } else {
-      newParams.onChange = this.props.update;
     }
 
     return newParams;
@@ -172,7 +175,8 @@ const mapDispatchToProps = dispatch => {
     update: evt => {
       const target = evt.target;
       dispatch(updateField(target.id, target.value));
-    }
+    },
+    setValid: (valid, name) => dispatch(fieldValidity(valid, name))
   };
 };
 

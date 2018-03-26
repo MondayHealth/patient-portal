@@ -40,6 +40,11 @@ function submitSuccess() {
   return { type: SUBMIT_SUCCESS };
 }
 
+export const UPDATE_FIELD_VALIDITY = "UPDATE_FIELD_VALIDITY";
+export function fieldValidity(valid, fieldName) {
+  return { type: UPDATE_FIELD_VALIDITY, valid, fieldName };
+}
+
 const SUBMIT_ENDPOINT = "https://api.monday.health/patient/submit";
 
 export function post(data) {

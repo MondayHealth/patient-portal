@@ -7,6 +7,7 @@ import {
   SUBMIT_ERROR,
   SUBMIT_SUCCESS,
   UPDATE_FIELD,
+  UPDATE_FIELD_VALIDITY,
   USER_ACTION
 } from "./actions";
 
@@ -91,5 +92,26 @@ export function submission(state = initialSubmissionState, action) {
       return { ...state, state: "success" };
     default:
       return state;
+  }
+}
+
+// noinspection JSUnusedGlobalSymbols
+export function invalidFields(state = {}, action) {
+  if (!action.type || action.type !== UPDATE_FIELD_VALIDITY) {
+    return state;
+  }
+
+  if (!action.valid) {
+    return { ...state, [action.fieldName]: true };
+  }
+
+  const fName = action.fieldName;
+
+  if (state.hasOwnProperty(fName)) {
+    const ret = { ...state };
+    delete ret[fName];
+    return ret;
+  } else {
+    return state;
   }
 }

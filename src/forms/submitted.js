@@ -41,7 +41,10 @@ class Submitted extends Component {
         </Title>
         <Cell size={12}>
           No personal information will be saved on this website as a result of
-          filling out this form, so feel free to close this tab now 😀
+          filling out this form, so feel free to close this tab now{" "}
+          <span role={"img"} aria-label="smiley face">
+            😀
+          </span>
         </Cell>
       </Grid>
     );

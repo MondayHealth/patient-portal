@@ -5,6 +5,7 @@ import Grid from "../components/grid";
 import Input from "../components/input";
 import ToggleField from "../components/toggle-field";
 import { Title } from "./title";
+import { fieldValidity } from "../actions";
 
 const options = [
   "Depression",
@@ -18,6 +19,7 @@ const options = [
 ];
 
 const TOGGLE_ID = "problem";
+const OTHER_ID = "other";
 
 class DescribeProblem extends Component {
   constructor(props) {
@@ -27,17 +29,27 @@ class DescribeProblem extends Component {
     };
   }
 
+  updateFromToggleState(toggleState) {
+    const inputVisible = toggleState && toggleState[toggleState.length - 1];
+    this.setState({ inputVisible });
+
+    if (!inputVisible) {
+      this.props.setValid(OTHER_ID, true);
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
-    const toggleState = nextProps.formFields[TOGGLE_ID];
-    this.setState({
-      inputVisible: toggleState && toggleState[toggleState.length - 1]
-    });
+    this.updateFromToggleState(nextProps.formFields[TOGGLE_ID]);
+  }
+
+  componentDidMount() {
+    this.updateFromToggleState(this.props.formFields[TOGGLE_ID]);
   }
 
   render() {
     const other = !this.state.inputVisible ? null : (
       <Cell size={12}>
-        <Input label={"Tell us in your own words"} id={"other"} />
+        <Input required label={"Tell us in your own words"} id={OTHER_ID} />
       </Cell>
     );
 
@@ -60,4 +72,10 @@ const mapStateToProps = state => {
   return { formFields: state.formFields };
 };
 
-export default connect(mapStateToProps)(DescribeProblem);
+const mapDispatchToProps = dispatch => {
+  return {
+    setValid: (valid, name) => dispatch(fieldValidity(valid, name))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DescribeProblem);
