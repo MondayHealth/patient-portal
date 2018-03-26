@@ -14,20 +14,29 @@ export default () => (
       information will <b>only</b> be shared with therapists you explicitly
       select. All fields are required except for gender.
     </Title>
-    <Cell size={4}>
+    <Cell size={4} sizes={{ desktop: 6 }}>
       <Input required label={"First Name"} id={"first"} />
     </Cell>
-    <Cell size={4}>
+    <Cell size={4} sizes={{ desktop: 6 }}>
       <Input required label={"Last Name"} id={"last"} />
     </Cell>
 
-    <Cell size={3}>
+    <Cell size={4} sizes={{ desktop: 6 }}>
       <Input required type={"email"} label={"E-Mail"} id={"email"} />
     </Cell>
-    <Cell size={3}>
+    <Cell size={4} sizes={{ desktop: 6 }}>
       <PhoneInput required label={"Phone Number"} id={"phone"} />
     </Cell>
-    <Cell size={2}>
+
+    <Cell size={4} sizes={{ desktop: 6 }}>
+      <Select
+        label={"Gender"}
+        id={"patient-gender"}
+        options={["Male", "Female", "Other"]}
+      />
+    </Cell>
+
+    <Cell size={2} sizes={{ desktop: 3 }}>
       <NumberInput
         validationMessage={"Invalid phone number."}
         required
@@ -38,16 +47,8 @@ export default () => (
       />
     </Cell>
 
-    <Cell size={2}>
+    <Cell size={2} sizes={{ desktop: 3 }}>
       <NumberInput required max={99999} label={"Zip Code"} id={"zip"} />
-    </Cell>
-
-    <Cell size={4}>
-      <Select
-        label={"Gender"}
-        id={"patient-gender"}
-        options={["Male", "Female", "Other"]}
-      />
     </Cell>
 
     <Cell size={12}>

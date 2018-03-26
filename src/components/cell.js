@@ -11,10 +11,10 @@ export default ({ size, children, align, sizes, className }) => {
     classes += SPAN_PREFIX + size;
   }
 
-  if (sizes && sizes.length) {
+  if (sizes) {
     // device can be the strings, {desktop, tablet, phone}
-    sizes.forEach(
-      ({ size, device }) =>
+    Object.entries(sizes).forEach(
+      ([device, size]) =>
         (classes += SPAN_PREFIX + (device ? size + "-" + device : size))
     );
   }
