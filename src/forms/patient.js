@@ -12,7 +12,7 @@ export default () => (
     <Title text={"Tell us about yourself"}>
       We'll try to match you with providers near the zip code you provide. This
       information will <b>only ever</b> be shared with therapists you explicitly
-      select.
+      select. All fields are required except for gender.
     </Title>
     <Cell size={4}>
       <Input required label={"First Name"} id={"first"} />
@@ -39,7 +39,7 @@ export default () => (
       />
     </Cell>
     <Cell size={2}>
-      <NumberInput max={99999} label={"Zip Code"} id={"zip"} />
+      <NumberInput required max={99999} label={"Zip Code"} id={"zip"} />
     </Cell>
 
     <Cell size={10}>
