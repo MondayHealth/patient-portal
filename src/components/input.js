@@ -44,18 +44,22 @@ class Input extends MDCBase {
     return MDCTextField;
   }
 
-  validate() {
+  validate(dontUpdateMDCObject) {
     const value = this.mdcObject.value.trim();
 
+    let valid = true;
+
     if (this.props.required && !value) {
-      this.mdcObject.valid = false;
+      valid = false;
     } else if (this.props.validator) {
-      this.mdcObject.valid = this.props.validator.call(this, value);
-    } else {
-      this.mdcObject.valid = true;
+      valid = this.props.validator.call(this, value);
     }
 
-    this.props.setValid(this.mdcObject.valid, this.props.id);
+    if (!dontUpdateMDCObject) {
+      this.mdcObject.valid = valid;
+    }
+
+    this.props.setValid(valid, this.props.id);
   }
 
   onChange(evt) {
@@ -75,6 +79,8 @@ class Input extends MDCBase {
       box: nextProps.box !== false,
       leadingIcon: nextProps.leadingIcon || false
     });
+
+    this.mdcObject.required = !!nextProps.required;
   }
 
   componentDidMount() {
@@ -89,7 +95,9 @@ class Input extends MDCBase {
       this.mdcObject.value = existingValue;
     }
 
-    this.validate();
+    this.mdcObject.required = this.props.required;
+
+    this.validate(!existingValue);
   }
 
   generateParams() {
@@ -110,6 +118,10 @@ class Input extends MDCBase {
 
     if (this.props.max) {
       newParams.max = this.props.max;
+    }
+
+    if (this.props.required) {
+      newParams.required = true;
     }
 
     return newParams;
@@ -150,14 +162,14 @@ class Input extends MDCBase {
     }
 
     let ret = (
-      <label className={classes}>
+      <div className={classes}>
         {icon}
-        <span className="mdc-floating-label mdc-text-field__label">
-          {this.props.label}
-        </span>
         <input {...this.generateParams()} />
+        <label htmlFor={this.props.id} className="mdc-floating-label">
+          {this.props.label}
+        </label>
         <div className="mdc-line-ripple" />
-      </label>
+      </div>
     );
 
     const helper = this.getHelper();

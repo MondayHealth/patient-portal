@@ -15,20 +15,20 @@ export default () => (
       select.
     </Title>
     <Cell size={4}>
-      <Input label={"First Name"} id={"first"} />
+      <Input required label={"First Name"} id={"first"} />
     </Cell>
     <Cell size={4}>
-      <Input label={"Last Name"} id={"last"} />
+      <Input required label={"Last Name"} id={"last"} />
     </Cell>
 
     <Cell size={3}>
-      <Input type={"email"} label={"E-Mail"} id={"email"} />
+      <Input required type={"email"} label={"E-Mail"} id={"email"} />
     </Cell>
     <Cell size={3}>
-      <PhoneInput label={"Phone Number"} id={"phone"} />
+      <PhoneInput required label={"Phone Number"} id={"phone"} />
     </Cell>
     <Cell size={2}>
-      <NumberInput min={1} max={100} label={"Age"} id={"age"} />
+      <NumberInput required min={1} max={100} label={"Age"} id={"age"} />
     </Cell>
 
     <Cell size={3}>
@@ -43,7 +43,11 @@ export default () => (
     </Cell>
 
     <Cell size={10}>
-      <Input label={"The full name of your insurance plan"} id={"insurance"} />
+      <Input
+        required
+        label={"The full name of your insurance plan"}
+        id={"insurance"}
+      />
     </Cell>
   </Grid>
 );

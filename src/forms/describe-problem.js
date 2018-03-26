@@ -34,7 +34,7 @@ class DescribeProblem extends Component {
     this.setState({ inputVisible });
 
     if (!inputVisible) {
-      this.props.setValid(OTHER_ID, true);
+      this.props.setValid(true, OTHER_ID);
     }
   }
 

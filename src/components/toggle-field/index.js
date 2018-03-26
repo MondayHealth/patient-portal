@@ -48,6 +48,8 @@ class ToggleField extends Component {
     const existing = this.props.formFields[id];
     if (existing) {
       this.updateSelectionState(existing, val => !!val);
+    } else {
+      this.props.setValid(false, this.props.id);
     }
   }
 
