@@ -12,7 +12,7 @@ export default class Provider extends Component {
       <Grid>
         <Title text={"Describe your ideal therapist"}>
           Are there any other qualifications you're looking for? Everything here
-          is optional, but it may help us find you a better match!
+          is optional, but they may help us find you a better match!
         </Title>
         <Cell size={12}>
           <Input

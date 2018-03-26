@@ -161,7 +161,7 @@ class Input extends MDCBase {
       }
     }
 
-    let ret = (
+    return (
       <div className={classes}>
         {icon}
         <input {...this.generateParams()} />
@@ -171,10 +171,6 @@ class Input extends MDCBase {
         <div className="mdc-line-ripple" />
       </div>
     );
-
-    const helper = this.getHelper();
-
-    return helper ? [ret, helper] : ret;
   }
 }
 

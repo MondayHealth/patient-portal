@@ -11,7 +11,7 @@ export default () => (
   <Grid>
     <Title text={"Tell us about yourself"}>
       We'll try to match you with providers near the zip code you provide. This
-      information will <b>only ever</b> be shared with therapists you explicitly
+      information will <b>only</b> be shared with therapists you explicitly
       select. All fields are required except for gender.
     </Title>
     <Cell size={4}>
@@ -28,21 +28,29 @@ export default () => (
       <PhoneInput required label={"Phone Number"} id={"phone"} />
     </Cell>
     <Cell size={2}>
-      <NumberInput required min={1} max={100} label={"Age"} id={"age"} />
+      <NumberInput
+        validationMessage={"Invalid phone number."}
+        required
+        min={1}
+        max={110}
+        label={"Age"}
+        id={"age"}
+      />
     </Cell>
 
-    <Cell size={3}>
+    <Cell size={2}>
+      <NumberInput required max={99999} label={"Zip Code"} id={"zip"} />
+    </Cell>
+
+    <Cell size={4}>
       <Select
         label={"Gender"}
         id={"patient-gender"}
         options={["Male", "Female", "Other"]}
       />
     </Cell>
-    <Cell size={2}>
-      <NumberInput required max={99999} label={"Zip Code"} id={"zip"} />
-    </Cell>
 
-    <Cell size={10}>
+    <Cell size={12}>
       <Input
         required
         label={"The full name of your insurance plan"}
