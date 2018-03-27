@@ -2,7 +2,6 @@ import { Component } from "react";
 import ReactDOM from "react-dom";
 
 import "@material/typography/dist/mdc.typography.min.css";
-import "@material/theme/dist/mdc.theme.min.css";
 
 export default class MDCBase extends Component {
   constructor(props) {

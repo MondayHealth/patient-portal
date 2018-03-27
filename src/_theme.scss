@@ -1,0 +1,7 @@
+$mdc-theme-primary: green;
+$mdc-theme-primary-light: lighten($mdc-theme-primary, 10);
+$mdc-theme-primary-dark: darken($mdc-theme-primary, 10);
+$mdc-theme-secondary-light: #ffd180;
+$mdc-theme-secondary-dark: #ff6d00;
+
+@import "../node_modules/@material/theme/mdc-theme";
