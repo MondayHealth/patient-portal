@@ -26,12 +26,20 @@ main.mdc-toolbar-fixed-adjust
   .circle
   {
     position: relative;
-    color: $mdc-theme-primary;
     font-weight: 900;
     width: 20px;
     height: 20px;
     margin-right: 7px;
     background-color: white;
+  }
+
+  .circle.center
+  {
+    background-color: $mdc-theme-primary;
+    width: 12px;
+    height: 12px;
+    margin-left: 4px;
+    margin-top: 4px;
   }
 
   i
@@ -44,34 +52,40 @@ main.mdc-toolbar-fixed-adjust
   }
 }
 
-._mdc-toolbar__sub-section.active
-{
-  .circle
-  {
-    span
-    {
-      position: absolute;
-      top: 1px;
-      left: 6px;
-    }
-  }
-}
-
 ._mdc-toolbar__sub-section.incomplete
 {
-  color: lightgray;
+  $color: lighten($mdc-theme-primary-light, 10);
+
+  color: $color;
 
   .circle
   {
-    background-color: lightgray;
+    background-color: $color;
   }
 }
 
 ._mdc-toolbar__sub-section.complete
 {
-  .circle {
-    background-color: #009c00;
-    color: white;
+  color: lighten($mdc-theme-primary-light, 10);
+
+  .circle
+  {
+    background-color: desaturate($mdc-theme-primary, 25);
+    color: lighten($mdc-theme-primary-light, 17);
+  }
+}
+
+.mdc-toolbar__section
+{
+  .mdc-toolbar__title
+  {
+    margin: 0;
+    align-self: center;
+
+    img
+    {
+      max-width: 128px;
+    }
   }
 }
 
@@ -93,5 +107,14 @@ main.mdc-toolbar-fixed-adjust
 {
   background-color: $mdc-theme-primary-light;
   justify-content: center;
+}
+
+.mdc-toolbar--flexible {
+  --mdc-toolbar-ratio-to-extend-flexible: 1;
+}
+
+.mdc-toolbar__row:first-child::after {
+  // background-size: cover;
+  // background: url("/top_bar.png") center;
 }
 

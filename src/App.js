@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Patient from "./forms/patient";
 import DescribeProblem from "./forms/describe-problem";
 import Provider from "./forms/provider";
@@ -9,12 +10,14 @@ import Submitted from "./forms/submitted";
 import "./app.css";
 import {
   decrementPage,
+  fieldValidity,
   incrementPage,
   setPage,
   setPageMax,
   submit
 } from "./actions";
-import { connect } from "react-redux";
+
+import "@material/typography/dist/mdc.typography.min.css";
 
 class App extends Component {
   constructor(props) {
@@ -33,6 +36,17 @@ class App extends Component {
     const cleaned = { ...data };
     cleaned.problem = data.problem.filter(val => !!val);
     this.props.submit(cleaned);
+  }
+
+  prevClick() {
+    // We don't want to leave any fields valid when we go back, otherwise we
+    // won't be able to go forward. All entered data should put the state back
+    // correctly when the user goes forward again.
+    Object.keys(this.props.invalidFields).forEach(name =>
+      this.props.valid(name)
+    );
+
+    this.props.prevPage();
   }
 
   nextClick() {
@@ -54,7 +68,7 @@ class App extends Component {
           <StageDisplay
             current={this.props.currentPage}
             max={this.pages.length}
-            prev={this.props.prevPage}
+            prev={this.prevClick.bind(this)}
             next={this.nextClick.bind(this)}
           />
         ) : null}
@@ -66,7 +80,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     currentPage: state.page.index,
-    formFields: state.formFields
+    formFields: state.formFields,
+    invalidFields: state.invalidFields
   };
 };
 
@@ -76,7 +91,8 @@ const mapDispatchToProps = dispatch => {
     nextPage: () => dispatch(incrementPage()),
     prevPage: () => dispatch(decrementPage()),
     setPageMax: max => dispatch(setPageMax(max)),
-    submit: submit(dispatch)
+    submit: submit(dispatch),
+    valid: name => dispatch(fieldValidity(true, name))
   };
 };
 

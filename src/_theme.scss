@@ -1,7 +1,21 @@
-$mdc-theme-primary: green;
-$mdc-theme-primary-light: lighten($mdc-theme-primary, 10);
-$mdc-theme-primary-dark: darken($mdc-theme-primary, 10);
-$mdc-theme-secondary-light: #ffd180;
-$mdc-theme-secondary-dark: #ff6d00;
+@import "../node_modules/@material/theme/functions";
+
+$dark-red: #FD0043;
+$monday-red: #FF7278;
+$monday-peach: #FF997D;
+$accent-peach: #FFD1A1;
+$monday-skin: #FFDFDF;
+
+$mdc-theme-primary: $dark-red;
+$mdc-theme-primary-light: $monday-red;
+
+$mdc-theme-accent: $monday-red;
+$mdc-theme-secondary: $mdc-theme-accent;
+$mdc-theme-secondary-light: $accent-peach;
+
+$mdc-theme-background: rgb(247,247,247);
+
+$mdc-theme-text-primary-on-dark: #333333;
+$mdc-theme-text-primary-on-light: #333333;
 
 @import "../node_modules/@material/theme/mdc-theme";

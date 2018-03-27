@@ -12,7 +12,7 @@ function indicatorForState(state) {
     case "active":
       return (
         <div className={"circle"}>
-          <span>?</span>
+          <div className={"circle center"} />
         </div>
       );
 
@@ -87,7 +87,7 @@ class ToolBar extends MDCBase {
   }
 
   render() {
-    const title = "Monday";
+    const title = <img alt={"logo"} src={"/white-logo.png"} />;
 
     return (
       <header className={TOOLBAR_CLASSES}>

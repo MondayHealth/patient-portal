@@ -44,7 +44,7 @@ class Input extends MDCBase {
     return MDCTextField;
   }
 
-  validate(dontUpdateMDCObject) {
+  validate() {
     const value = this.mdcObject.value.trim();
 
     let valid = true;
@@ -55,7 +55,7 @@ class Input extends MDCBase {
       valid = this.props.validator.call(this, value);
     }
 
-    if (!dontUpdateMDCObject) {
+    if (value) {
       this.mdcObject.valid = valid;
     }
 
@@ -69,9 +69,7 @@ class Input extends MDCBase {
       this.props.onChange(evt);
     }
 
-    if (this.mdcObject.valid) {
-      this.props.update(evt);
-    }
+    this.props.update(evt);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -90,14 +88,14 @@ class Input extends MDCBase {
       throw new Error("Must specify an ID for input components.");
     }
 
+    this.mdcObject.required = this.props.required;
+
     const existingValue = this.props.formFields[this.props.id];
     if (existingValue) {
       this.mdcObject.value = existingValue;
+    } else {
+      this.validate();
     }
-
-    this.mdcObject.required = this.props.required;
-
-    this.validate(!existingValue);
   }
 
   generateParams() {
