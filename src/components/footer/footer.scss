@@ -1,0 +1,17 @@
+.page-bottom
+{
+  padding: 25px;
+  background-color: gray;
+
+  img#footer-logo {
+    max-width: 128px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-bottom
+  {
+    margin-bottom: 64px;
+  }
+}

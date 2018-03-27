@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Input from "../components/input";
-import Cell from "../components/cell";
 import Select from "../components/select";
 import Grid from "../components/grid";
+import Cell from "../components/cell";
 import CurrencyInput from "../components/currency-input";
 import { Title } from "./title";
 

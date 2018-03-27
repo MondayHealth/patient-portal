@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import Footer from "./components/footer";
 import registerServiceWorker from "./registerServiceWorker";
 
 import { Provider } from "react-redux";
@@ -15,6 +16,7 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <div>
         <Route exact path="/" component={App} />
+        <Footer />
       </div>
     </ConnectedRouter>
   </Provider>,
