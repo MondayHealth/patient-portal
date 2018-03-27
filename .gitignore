@@ -1,4 +1,6 @@
 
+.idea/markdown-navigator*
+
 # We use Sass
 src/**/*.css
 
