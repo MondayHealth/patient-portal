@@ -56,15 +56,15 @@ class DescribeProblem extends Component {
   render() {
     const other = !this.state.inputVisible ? null : (
       <Cell size={12}>
-        <Input required label={"Tell us in your own words"} id={OTHER_ID} />
+        <Input required label={"Tell us what's wrong"} id={OTHER_ID} />
       </Cell>
     );
 
     return (
       <Grid>
         <Title text={"What's bothering you?"}>
-          Select as many of the following things you'd like to talk to a
-          therapist about:
+          Select one or more of the following issues, or click "Something
+          Else..." to describe how you're feeling in your own words.
         </Title>
         <Cell size={12}>
           <ToggleField id={TOGGLE_ID} options={options} />

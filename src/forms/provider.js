@@ -15,11 +15,7 @@ export default class Provider extends Component {
           is optional, but they may help us find you a better match!
         </Title>
         <Cell size={12}>
-          <Input
-            label={"Language other than English?"}
-            onChange={this.props.update}
-            id={"lang"}
-          />
+          <Input label={"Language other than English?"} id={"lang"} />
         </Cell>
         <Cell size={12}>
           <Select

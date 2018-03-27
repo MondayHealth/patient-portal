@@ -33,8 +33,7 @@ class Input extends MDCBase {
     super(props);
 
     this.state = {
-      leadingIcon: false,
-      box: true
+      leadingIcon: false
     };
 
     this.onChange = this.onChange.bind(this);
@@ -65,20 +64,24 @@ class Input extends MDCBase {
   onChange(evt) {
     this.validate();
 
-    if (this.props.onChange) {
-      this.props.onChange(evt);
-    }
-
     this.props.update(evt);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      box: nextProps.box !== false,
       leadingIcon: nextProps.leadingIcon || false
     });
 
-    this.mdcObject.required = !!nextProps.required;
+    this.required(nextProps.required);
+  }
+
+  required(newValue) {
+    const willBeRequired = !!newValue;
+    const isRequired = this.mdcObject.required;
+
+    if (willBeRequired !== isRequired) {
+      this.mdcObject.required = willBeRequired;
+    }
   }
 
   componentDidMount() {
@@ -88,14 +91,14 @@ class Input extends MDCBase {
       throw new Error("Must specify an ID for input components.");
     }
 
-    this.mdcObject.required = this.props.required;
+    this.required(this.props.required);
 
     const existingValue = this.props.formFields[this.props.id];
     if (existingValue) {
       this.mdcObject.value = existingValue;
-    } else {
-      this.validate();
     }
+
+    this.validate();
   }
 
   generateParams() {
@@ -116,10 +119,6 @@ class Input extends MDCBase {
 
     if (this.props.max) {
       newParams.max = this.props.max;
-    }
-
-    if (this.props.required) {
-      newParams.required = true;
     }
 
     return newParams;
@@ -148,15 +147,12 @@ class Input extends MDCBase {
   }
 
   render() {
-    let classes = "mdc-text-field";
+    let classes = "mdc-text-field mdc-text-field--box";
     let icon = null;
-    if (this.state.box) {
-      classes += " mdc-text-field--box";
 
-      if (this.state.leadingIcon) {
-        classes += " mdc-text-field--with-leading-icon";
-        icon = <Icon name={this.state.leadingIcon} />;
-      }
+    if (this.state.leadingIcon) {
+      classes += " mdc-text-field--with-leading-icon";
+      icon = <Icon name={this.state.leadingIcon} />;
     }
 
     return (

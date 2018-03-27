@@ -1,7 +1,7 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import ReactDOM from "react-dom";
 
-export default class MDCBase extends Component {
+export default class MDCBase extends PureComponent {
   constructor(props) {
     super(props);
     this.mdcRootElement = null;

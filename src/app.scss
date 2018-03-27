@@ -13,6 +13,24 @@ html {
   width: 100%;
 }
 
+
+// This is a fix for some weird inclusion order bug
+.mdc-select:not(.mdc-select--disabled)
+{
+  .mdc-select__surface:focus
+  {
+    .mdc-select__label
+    {
+      color: $mdc-theme-primary;
+    }
+  }
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled):not(.mdc-text-field--textarea).mdc-text-field--invalid
+{
+  background-color: transparentize($mdc-theme-primary, .9);
+}
+
 .mdc-select--box
 {
   margin-top: 16px;
