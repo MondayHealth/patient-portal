@@ -14,7 +14,11 @@ export function validate(value) {
     return false;
   }
 
-  return !(this.props.min && intVal < this.props.min);
+  if (this.props.min && intVal < this.props.min) {
+    return false;
+  }
+
+  return !(this.props.max && intVal > this.props.max);
 }
 
 export default params => (
