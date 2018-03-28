@@ -6,10 +6,12 @@ html {
 
 body {
   margin: 0;
+  background-color: $container-color;
 }
 
 .app {
-  margin: 8px 8px 32px;
+  background-color: white;
+  padding: 8px 8px 32px;
 }
 
 .mdc-text-field

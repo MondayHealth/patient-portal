@@ -8,6 +8,10 @@ export default class MDCBase extends PureComponent {
     this.mdcObject = null;
   }
 
+  scrollToTop() {
+    this.mdcRootElement.scrollIntoView();
+  }
+
   getConstructor() {
     throw new Error("Implementation of this method is required in subclass.");
   }

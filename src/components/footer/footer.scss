@@ -1,11 +1,59 @@
+@import "../../theme.scss";
+
+$link-color: $monday-red;
+$link-hover-color: $mdc-theme-primary;
+
 .page-bottom
 {
   padding: 25px;
-  background-color: gray;
+  background-color: $container-color;
 
-  img#footer-logo {
+  a
+  {
+    color: $link-color;
+  }
+
+  a:hover
+  {
+    color: $link-hover-color;
+  }
+
+  img#footer-logo
+  {
     max-width: 128px;
     margin: 0 auto;
+  }
+
+  .mdc-layout-grid__cell
+  {
+    justify-self: center;
+  }
+
+  .nsh-warn
+  {
+    border: 1px solid black;
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 768px;
+  }
+
+  #bottom-link-container
+  {
+    a
+    {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    span
+    {
+      color: lighten($mdc-theme-text-primary-on-light, 30);
+    }
+  }
+
+  .copyright
+  {
+    color: darken($container-color, 35);
   }
 }
 

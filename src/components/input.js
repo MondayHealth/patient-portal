@@ -99,6 +99,10 @@ class Input extends MDCBase {
     }
 
     this.validate();
+
+    if (this.props.scrollWhenMounted) {
+      this.scrollToTop();
+    }
   }
 
   generateParams() {
