@@ -1,6 +1,8 @@
 import { PureComponent } from "react";
 import ReactDOM from "react-dom";
 
+const SCROLL_OFFSET = 256;
+
 export default class MDCBase extends PureComponent {
   constructor(props) {
     super(props);
@@ -9,7 +11,9 @@ export default class MDCBase extends PureComponent {
   }
 
   scrollToTop() {
-    this.mdcRootElement.scrollIntoView();
+    const rect = this.mdcRootElement.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    window.scrollTo(0, rect.top + scrollTop - SCROLL_OFFSET);
   }
 
   getConstructor() {
@@ -17,7 +21,11 @@ export default class MDCBase extends PureComponent {
   }
 
   getRootElement() {
-    return this.mdcRootElement || ReactDOM.findDOMNode(this);
+    if (!this.mdcRootElement) {
+      this.mdcRootElement = ReactDOM.findDOMNode(this);
+    }
+
+    return this.mdcRootElement;
   }
 
   componentDidMount() {

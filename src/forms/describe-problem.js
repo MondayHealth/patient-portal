@@ -32,13 +32,7 @@ class DescribeProblem extends Component {
   updateFromToggleState(toggleState) {
     const inputVisible = toggleState && toggleState[toggleState.length - 1];
 
-    const scroll = inputVisible && this.state.inputVisible !== inputVisible;
-
-    this.setState({ inputVisible }, () => {
-      if (scroll) {
-        window.scrollTo(0, document.body.scrollHeight);
-      }
-    });
+    this.setState({ inputVisible });
 
     if (!inputVisible) {
       this.props.setValid(true, OTHER_ID);
@@ -56,7 +50,12 @@ class DescribeProblem extends Component {
   render() {
     const other = !this.state.inputVisible ? null : (
       <Cell size={12}>
-        <Input required label={"Tell us what's wrong"} id={OTHER_ID} />
+        <Input
+          required
+          scrollWhenMounted
+          label={"Tell us what's wrong"}
+          id={OTHER_ID}
+        />
       </Cell>
     );
 
