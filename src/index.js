@@ -14,7 +14,7 @@ import store, { history } from "./store-index";
 const target = document.getElementById("root");
 
 init();
-event("bootstrap");
+event("bootstrap", "load", "app", 0, true);
 
 ReactDOM.render(
   <Provider store={store}>

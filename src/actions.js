@@ -1,4 +1,4 @@
-import { event } from "./gtag";
+import { event, exception } from "./gtag";
 
 export const USER_ACTION = "USER_ACTION";
 
@@ -68,8 +68,9 @@ export function post(data) {
 
     request.onerror = () => reject(-1);
 
-    event("submit");
     request.send(data);
+
+    event("send", "form", "xhr", 1, true);
   });
 }
 
@@ -82,15 +83,15 @@ export function submit(dispatch) {
         const parsed = JSON.parse(result);
         if (!parsed || parsed.success !== true) {
           const msg = "invalid response: " + result;
-          event("error", { error: msg });
+          exception(msg, true);
           dispatch(submitError(msg));
         } else {
-          event("success");
+          event("success", "form", "received result", 2, true);
           dispatch(submitSuccess(result));
         }
       })
       .catch(error => {
-        event("error", { error });
+        exception(error, true);
         dispatch(submitError(error));
       });
   };

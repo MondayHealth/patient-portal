@@ -8,10 +8,18 @@ export function init() {
   gTag("config", "UA-111743668-2");
 }
 
-export function event(name, param) {
-  if (param) {
-    gTag("event", name, param);
-  } else {
-    gTag("event", name);
-  }
+export function event(name, category, label, value, nonInteractive) {
+  gTag("event", name, {
+    event_category: category,
+    event_label: label,
+    non_interaction: nonInteractive,
+    value
+  });
+}
+
+export function exception(description, fatal) {
+  gTag("event", "exception", {
+    description: description,
+    fatal: !!fatal
+  });
 }

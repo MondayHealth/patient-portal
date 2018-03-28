@@ -14,7 +14,8 @@ import {
   incrementPage,
   setPage,
   setPageMax,
-  submit, updateLocation
+  submit,
+  updateLocation
 } from "./actions";
 
 import "@material/typography/dist/mdc.typography.min.css";
@@ -38,7 +39,7 @@ class App extends Component {
   sheetSubmit(data) {
     const cleaned = { ...data };
     cleaned.problem = data.problem.filter(val => !!val);
-    event("submit");
+    event("submit", "form", "controller action", 0, true);
     this.props.submit(cleaned);
   }
 
@@ -50,7 +51,7 @@ class App extends Component {
       this.props.valid(name)
     );
 
-    event("prev", { from: this.props.currentPage });
+    event("prev", "navigation", "next", this.props.currentPage);
     this.props.prevPage();
   }
 
@@ -59,12 +60,13 @@ class App extends Component {
       this.sheetSubmit(this.props.formFields);
     }
 
-    event("next", { from: this.props.currentPage });
+    event("next", "navigation", "next", this.props.currentPage);
     this.props.nextPage();
+    window.scrollTo(0, 0);
   }
 
   componentDidMount() {
-    event("mount");
+    event("mount", "load", "app", 1, true);
   }
 
   render() {
@@ -103,7 +105,7 @@ const mapDispatchToProps = dispatch => {
     setPageMax: max => dispatch(setPageMax(max)),
     submit: submit(dispatch),
     valid: name => dispatch(fieldValidity(true, name)),
-    updateLocation: (location) => dispatch(updateLocation(location))
+    updateLocation: location => dispatch(updateLocation(location))
   };
 };
 
