@@ -1,0 +1,21 @@
+
+.no-match
+{
+  padding: 82px 32px 82px;
+
+  main
+  {
+    max-width: 450px;
+    width: 100%;
+
+    i
+    {
+      font-size: 256px;
+      font-weight: 900;
+      color: lighten(black, 90);
+      text-align: center;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+}

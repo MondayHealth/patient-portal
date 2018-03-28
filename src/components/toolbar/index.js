@@ -81,23 +81,29 @@ const TOOLBAR_CLASSES = [
   "mdc-toolbar--fixed-at-last-row"
 ].join(" ");
 
+export const Bar = ({ children }) => (
+  <header className={TOOLBAR_CLASSES}>
+    <div id="top-toolbar" className="mdc-toolbar__row">
+      <section className="mdc-toolbar__section">
+        <span className="mdc-toolbar__title">
+          <img alt={"logo"} src={"/white-logo.png"} />
+        </span>
+      </section>
+    </div>
+    {children}
+  </header>
+);
+
 class ToolBar extends MDCBase {
   getConstructor() {
     return MDCToolbar;
   }
 
   render() {
-    const title = <img alt={"logo"} src={"/white-logo.png"} />;
-
     return (
-      <header className={TOOLBAR_CLASSES}>
-        <div id="top-toolbar" className="mdc-toolbar__row">
-          <section className="mdc-toolbar__section">
-            <span className="mdc-toolbar__title">{title}</span>
-          </section>
-        </div>
+      <Bar>
         <StepperContainer activePage={this.props.currentPage} />
-      </header>
+      </Bar>
     );
   }
 }
