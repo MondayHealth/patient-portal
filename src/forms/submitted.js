@@ -67,6 +67,7 @@ class Submitted extends Component {
       default:
         break;
     }
+
     return Submitted.getWaiting();
   }
 }

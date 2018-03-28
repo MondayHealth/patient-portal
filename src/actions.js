@@ -1,3 +1,5 @@
+import { event } from "./gtag";
+
 export const USER_ACTION = "USER_ACTION";
 
 export const SET_PAGE = "SET_PAGE";
@@ -61,6 +63,7 @@ export function post(data) {
 
     request.onerror = () => reject(-1);
 
+    event("submit");
     request.send(data);
   });
 }
@@ -73,11 +76,17 @@ export function submit(dispatch) {
       .then(result => {
         const parsed = JSON.parse(result);
         if (!parsed || parsed.success !== true) {
-          dispatch(submitError("invalid response: " + result));
+          const msg = "invalid response: " + result;
+          event("error", { error: msg });
+          dispatch(submitError(msg));
         } else {
+          event("success");
           dispatch(submitSuccess(result));
         }
       })
-      .catch(error => dispatch(submitError(error)));
+      .catch(error => {
+        event("error", { error });
+        dispatch(submitError(error));
+      });
   };
 }

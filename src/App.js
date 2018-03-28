@@ -18,6 +18,7 @@ import {
 } from "./actions";
 
 import "@material/typography/dist/mdc.typography.min.css";
+import { event } from "./gtag";
 
 class App extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class App extends Component {
   sheetSubmit(data) {
     const cleaned = { ...data };
     cleaned.problem = data.problem.filter(val => !!val);
+    event("submit");
     this.props.submit(cleaned);
   }
 
@@ -46,6 +48,7 @@ class App extends Component {
       this.props.valid(name)
     );
 
+    event("prev", { from: this.props.currentPage });
     this.props.prevPage();
   }
 
@@ -54,7 +57,12 @@ class App extends Component {
       this.sheetSubmit(this.props.formFields);
     }
 
+    event("next", { from: this.props.currentPage });
     this.props.nextPage();
+  }
+
+  componentDidMount() {
+    event("mount");
   }
 
   render() {

@@ -7,6 +7,7 @@ import registerServiceWorker from "./registerServiceWorker";
 import { Provider } from "react-redux";
 import { Route } from "react-router";
 import { ConnectedRouter } from "react-router-redux";
+import { init, event } from "./gtag"
 import store, { history } from "./store-index";
 
 const target = document.getElementById("root");
@@ -22,5 +23,8 @@ ReactDOM.render(
   </Provider>,
   target
 );
+
+init();
+event("bootstrap");
 
 registerServiceWorker();
