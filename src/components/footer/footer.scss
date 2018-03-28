@@ -37,6 +37,22 @@ $link-hover-color: $mdc-theme-primary;
     max-width: 768px;
   }
 
+  #social-icon-container
+  {
+    img
+    {
+      margin-left: 5px;
+      margin-right: 5px;
+      width: 32px;
+    }
+
+    img:hover
+    {
+      box-shadow: 1px 1px 5px -1px $monday-red;
+      border-radius: 5px;
+    }
+  }
+
   #bottom-link-container
   {
     a

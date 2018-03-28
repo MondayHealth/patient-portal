@@ -4,7 +4,6 @@ import Grid from "../grid";
 import Cell from "../cell";
 
 import "./footer.css";
-import { Icon } from "../icon";
 
 const EMAIL = "hello@mondayhealth.com";
 
@@ -21,19 +20,18 @@ const NSH = () => (
 );
 
 const SOCIAL = [
-  ["instagram", "https://www.instagram.com/mondayhealth/", "camera"],
-  ["twitter", "https://twitter.com/MondayHealth", "camera"],
-  ["facebook", "https://www.facebook.com/mondayinc/", "camera"],
-  ["pinterest", "https://www.pinterest.com/mondayhealth/", "camera"]
+  ["Instagram", "https://www.instagram.com/mondayhealth/", "insta"],
+  ["Twitter", "https://twitter.com/MondayHealth", "twitter"],
+  ["Facebook", "https://www.facebook.com/mondayinc/", "fb"]
 ];
 
 const SocialIcons = () => {
-  const icons = SOCIAL.map(([name, url, icon]) => (
-    <a href={url}>
-      <Icon name={icon} />
+  const icons = SOCIAL.map(([name, url, icon], idx) => (
+    <a key={idx} href={url}>
+      <img src={"/" + icon + ".png"} alt={"Follow us on " + name} />
     </a>
   ));
-  return <Cell size={12}>{icons}</Cell>;
+  return <Cell id={"social-icon-container"} size={12}>{icons}</Cell>;
 };
 
 export default () => (
