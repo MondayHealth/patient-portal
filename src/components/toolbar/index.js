@@ -92,8 +92,16 @@ class ToolBar extends MDCBase {
     return (
       <header className={TOOLBAR_CLASSES}>
         <div id="top-toolbar" className="mdc-toolbar__row">
+          <section className="mdc-toolbar__section mdc-toolbar__section--align-start">
+            <a href="https://www.monday.health/about-us/">About Us</a>
+            <a href="https://www.monday.health/for-providers/">For Providers</a>
+          </section>
           <section className="mdc-toolbar__section">
             <span className="mdc-toolbar__title">{title}</span>
+          </section>
+          <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
+            <a href="https://www.monday.health/faq/">FAQ</a>
+            <a href="https://www.monday.health/blog/">Blog</a>
           </section>
         </div>
         <StepperContainer activePage={this.props.currentPage} />
