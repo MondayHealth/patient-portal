@@ -5,7 +5,7 @@ import Grid from "../components/grid";
 import Input from "../components/input";
 import ToggleField from "../components/toggle-field";
 import { Title } from "./title";
-import { fieldValidity } from "../actions";
+import { fieldValidity, updateField } from "../actions";
 
 const options = [
   "Depression",
@@ -24,9 +24,23 @@ const OTHER_ID = "other";
 class DescribeProblem extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       inputVisible: false
     };
+
+    const idx = this.getPreFillIndex();
+
+    if (!this.props.formFields[TOGGLE_ID] && idx > -1) {
+      const initialValue = new Array(options.length);
+      initialValue[idx] = options[idx];
+      this.props.setDefaults(initialValue);
+    }
+  }
+
+  getPreFillIndex() {
+    const param = this.props.params.prefill;
+    return param === "other" ? options.length - 1 : options.indexOf(param);
   }
 
   updateFromToggleState(toggleState) {
@@ -75,12 +89,13 @@ class DescribeProblem extends Component {
 }
 
 const mapStateToProps = state => {
-  return { formFields: state.formFields };
+  return { formFields: state.formFields, params: state.location.params };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setValid: (valid, name) => dispatch(fieldValidity(valid, name))
+    setValid: (valid, name) => dispatch(fieldValidity(valid, name)),
+    setDefaults: value => dispatch(updateField(TOGGLE_ID, value))
   };
 };
 

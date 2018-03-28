@@ -47,6 +47,11 @@ export function fieldValidity(valid, fieldName) {
   return { type: UPDATE_FIELD_VALIDITY, valid, fieldName };
 }
 
+export const UPDATE_LOCATION = "UPDATE_LOCATION";
+export function updateLocation(location) {
+  return { type: UPDATE_LOCATION, location };
+}
+
 const SUBMIT_ENDPOINT = "https://api.monday.health/patient/submit";
 
 export function post(data) {

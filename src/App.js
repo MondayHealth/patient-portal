@@ -14,7 +14,7 @@ import {
   incrementPage,
   setPage,
   setPageMax,
-  submit
+  submit, updateLocation
 } from "./actions";
 
 import "@material/typography/dist/mdc.typography.min.css";
@@ -30,7 +30,9 @@ class App extends Component {
       <Patient />,
       <Submitted />
     ];
+
     this.props.setPageMax(this.pages.length);
+    this.props.updateLocation(this.props.location);
   }
 
   sheetSubmit(data) {
@@ -100,7 +102,8 @@ const mapDispatchToProps = dispatch => {
     prevPage: () => dispatch(decrementPage()),
     setPageMax: max => dispatch(setPageMax(max)),
     submit: submit(dispatch),
-    valid: name => dispatch(fieldValidity(true, name))
+    valid: name => dispatch(fieldValidity(true, name)),
+    updateLocation: (location) => dispatch(updateLocation(location))
   };
 };
 

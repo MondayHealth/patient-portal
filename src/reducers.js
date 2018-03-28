@@ -8,6 +8,7 @@ import {
   SUBMIT_SUCCESS,
   UPDATE_FIELD,
   UPDATE_FIELD_VALIDITY,
+  UPDATE_LOCATION,
   USER_ACTION
 } from "./actions";
 
@@ -114,4 +115,31 @@ export function invalidFields(state = {}, action) {
   } else {
     return state;
   }
+}
+
+const initialLocationState = {
+  params: {}
+};
+
+export function location(state = initialLocationState, action) {
+  if (!action.type || action.type !== UPDATE_LOCATION) {
+    return state;
+  }
+
+  if (!action.location.search) {
+    return state;
+  }
+
+  const search = action.location.search
+    .trim()
+    .substr(1)
+    .replace("+", " ");
+
+  const tokens = decodeURIComponent(search).split("&");
+  const pairs = tokens.map(val => val.split("="));
+  const ret = {};
+
+  pairs.forEach(([key, value]) => (ret[key] = value));
+
+  return { ...state, params: ret };
 }
