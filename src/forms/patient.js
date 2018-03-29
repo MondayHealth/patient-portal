@@ -10,9 +10,9 @@ import { Title } from "./title";
 export default () => (
   <Grid>
     <Title text={"Tell us about yourself"}>
-      We'll try to match you with providers near the zip code you provide. This
-      information will <b>only</b> be shared with therapists you explicitly
-      select. All fields are required except for gender.
+      Now we just need to know a little more about you. All fields are required
+      except for gender, and don't worry: this information will <b>only</b> be
+      shared with therapists you explicitly select.
     </Title>
     <Cell size={4} sizes={{ desktop: 6 }}>
       <Input required label={"First Name"} id={"first"} />
@@ -27,7 +27,6 @@ export default () => (
     <Cell size={4} sizes={{ desktop: 6 }}>
       <PhoneInput required label={"Phone Number"} id={"phone"} />
     </Cell>
-
     <Cell size={4} sizes={{ desktop: 6 }}>
       <Select
         label={"Gender"}
@@ -35,7 +34,6 @@ export default () => (
         options={["Male", "Female", "Other"]}
       />
     </Cell>
-
     <Cell size={2} sizes={{ desktop: 3 }}>
       <NumberInput
         validationMessage={"Invalid phone number."}
@@ -46,17 +44,8 @@ export default () => (
         id={"age"}
       />
     </Cell>
-
     <Cell size={2} sizes={{ desktop: 3 }}>
-      <NumberInput required max={99999} label={"Zip Code"} id={"zip"} />
-    </Cell>
-
-    <Cell size={12}>
-      <Input
-        required
-        label={"The full name of your insurance plan"}
-        id={"insurance"}
-      />
+      <NumberInput required max={99999} label={"ZIP"} id={"zip"} />
     </Cell>
   </Grid>
 );
