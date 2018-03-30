@@ -34,6 +34,17 @@ class App extends Component {
 
     this.props.setPageMax(this.pages.length);
     this.props.updateLocation(this.props.location);
+
+    window.onbeforeunload = this.beforeUnloadHandler.bind(this);
+  }
+
+  beforeUnloadHandler() {
+    if (
+      Object.entries(this.props.formFields).length &&
+      this.props.submissionState === "unsubmitted"
+    ) {
+      return "If you leave the page, you'll lose your changes! Is that ok?";
+    }
   }
 
   sheetSubmit(data) {
@@ -69,6 +80,10 @@ class App extends Component {
     event("mount", "load", "app", 1, true);
   }
 
+  componentWillUnmount() {
+    window.onbeforeunload = null;
+  }
+
   render() {
     return (
       <div className="app">
@@ -93,7 +108,8 @@ const mapStateToProps = state => {
   return {
     currentPage: state.page.index,
     formFields: state.formFields,
-    invalidFields: state.invalidFields
+    invalidFields: state.invalidFields,
+    submissionState: state.submission.state
   };
 };
 
