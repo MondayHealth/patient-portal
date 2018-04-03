@@ -15,7 +15,11 @@ export default class Provider extends Component {
           <span>
             We always try to match you with a provider that takes your
             insurance, so please include the <b>full</b> name of your plan if
-            you have one.
+            you have one.{" "}
+            <span className={"de-emphasized"}>
+              (E.g.: Oxford Freedom, Cigna Open Access Plus, or Oscar
+              Market Silver)
+            </span>
           </span>
           <Input
             required

@@ -19,6 +19,10 @@ body {
   width: 100%;
 }
 
+.de-emphasized
+{
+  color: lighten($mdc-theme-text-primary-on-light, 35);
+}
 
 // This is a fix for some weird inclusion order bug
 .mdc-select:not(.mdc-select--disabled)
