@@ -12,7 +12,7 @@ const options = [
   "Anxiety",
   "Eating Disorders",
   "Trauma",
-  "Relationship Issues",
+  "Relationships",
   "Family Issues",
   "Career Counseling",
   "Something else ..."
