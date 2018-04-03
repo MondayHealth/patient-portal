@@ -3,6 +3,7 @@ import MDCBase from "./base";
 import { Icon } from "./icon";
 import { connect } from "react-redux";
 import { fieldValidity, updateField } from "../actions";
+
 // MDC doesn't come prebuilt
 // noinspection ES6CheckImport
 import { MDCTextField } from "@material/textfield/dist/mdc.textfield.min";

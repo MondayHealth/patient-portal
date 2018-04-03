@@ -5,6 +5,7 @@ import Grid from "../components/grid";
 import Cell from "../components/cell";
 import CurrencyInput from "../components/currency-input";
 import { Title } from "./title";
+import TextArea from "../components/textarea";
 
 export default class Provider extends Component {
   render() {
@@ -73,6 +74,14 @@ export default class Provider extends Component {
             Would it help if your provider spoke a language other than English?
           </span>
           <Input label={"Preferred provider language"} id={"lang"} />
+        </Cell>
+
+        <Cell size={12}>
+          <span>
+            Let us know here, in your own words, if there's any other qualities
+            you'd like to see in a therapist.
+          </span>
+          <TextArea id={"tell-us"} label={"Anything else?"} />
         </Cell>
       </Grid>
     );

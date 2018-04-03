@@ -1,5 +1,7 @@
 @import "theme.scss";
 
+$invalid-bg: transparentize($mdc-theme-primary, .9);
+
 html {
   color: $mdc-theme-text-primary-on-light;
 }
@@ -7,6 +9,11 @@ html {
 body {
   margin: 0;
   background-color: $container-color;
+}
+
+textarea
+{
+  resize: vertical;
 }
 
 .app {
@@ -38,7 +45,15 @@ body {
 
 .mdc-text-field:not(.mdc-text-field--disabled):not(.mdc-text-field--textarea).mdc-text-field--invalid
 {
-  background-color: transparentize($mdc-theme-primary, .9);
+  background-color: $invalid-bg;
+}
+
+label.mdc-text-field--invalid.mdc-text-field--textarea
+{
+  textarea, span
+  {
+    background-color: $invalid-bg;
+  }
 }
 
 .mdc-select--box
