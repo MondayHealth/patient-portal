@@ -44,7 +44,7 @@ export default class Provider extends Component {
             gender?
           </span>
           <Select
-            label={"Gender"}
+            label={"Therapist Gender"}
             options={["No Preference", "Male", "Female", "Other"]}
             defaultValue={0}
             id={"provider-gender"}
@@ -71,9 +71,9 @@ export default class Provider extends Component {
         </Cell>
         <Cell size={12}>
           <span>
-            Would it help if your provider spoke a language other than English?
+            Would you prefer therapy in a language other than English?
           </span>
-          <Input label={"Preferred provider language"} id={"lang"} />
+          <Input label={"Secondary language"} id={"lang"} />
         </Cell>
 
         <Cell size={12}>
