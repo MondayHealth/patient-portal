@@ -104,14 +104,6 @@ main.mdc-toolbar-fixed-adjust
   }
 }
 
-@media (max-width: 768px) {
-  .mdc-toolbar__section {
-    a {
-      display: none;
-    }
-  }
-}
-
 @media (max-width: 580px) {
   ._mdc-toolbar__sub-section.complete,
   ._mdc-toolbar__sub-section.incomplete

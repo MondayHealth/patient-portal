@@ -36,7 +36,7 @@ class Submitted extends Component {
       <Grid>
         <Title text={"We'll be in touch soon!"}>
           We're just starting out, so we review every match for quality. This
-          makes the process take between 24 and 48 hours (a bit slower than we'd
+          makes the process take between 48 and 72 hours (a bit slower than we'd
           like) but rest assured we'll get in touch with you soon.
         </Title>
         <Cell size={12}>
@@ -53,7 +53,10 @@ class Submitted extends Component {
   static getWaiting() {
     return (
       <Grid>
-        <Title text={"Submitting..."}>This should only take a sec'.</Title>
+        <Cell className={"submission-container"} size={12}>
+          <div className={"submission-spinner"} />
+          <span>(This should only take a sec'.)</span>
+        </Cell>
       </Grid>
     );
   }

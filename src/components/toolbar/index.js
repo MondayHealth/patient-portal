@@ -86,7 +86,9 @@ export const Bar = ({ children }) => (
     <div id="top-toolbar" className="mdc-toolbar__row">
       <section className="mdc-toolbar__section">
         <span className="mdc-toolbar__title">
-          <img alt={"logo"} src={"/white-logo.png"} />
+          <a href={"https://monday.health/"}>
+            <img alt={"logo"} src={"/white-logo.png"} />
+          </a>
         </span>
       </section>
     </div>
