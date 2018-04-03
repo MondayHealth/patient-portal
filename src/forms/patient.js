@@ -31,7 +31,8 @@ export default () => (
       <Select
         label={"Gender"}
         id={"patient-gender"}
-        options={["Male", "Female", "Other"]}
+        options={["Prefer not to say", "Male", "Female", "Other"]}
+        defaultValue={0}
       />
     </Cell>
     <Cell size={2} sizes={{ desktop: 3 }}>
