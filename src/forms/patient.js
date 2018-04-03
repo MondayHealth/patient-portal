@@ -25,7 +25,7 @@ export default () => (
       <Input required type={"email"} label={"E-Mail"} id={"email"} />
     </Cell>
     <Cell size={4} sizes={{ desktop: 6 }}>
-      <PhoneInput required label={"Phone Number"} id={"phone"} />
+      <PhoneInput label={"Phone Number"} id={"phone"} />
     </Cell>
     <Cell size={4} sizes={{ desktop: 6 }}>
       <Select
