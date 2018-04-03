@@ -4,6 +4,7 @@ $invalid-bg: transparentize($mdc-theme-primary, .9);
 
 html {
   color: $mdc-theme-text-primary-on-light;
+  overflow-y: scroll;
 }
 
 body {
