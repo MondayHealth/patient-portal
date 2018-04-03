@@ -32,6 +32,8 @@ class App extends Component {
       <Submitted />
     ];
 
+    this.pageNamesForGA = ["problem", "provider", "patient", "submit"];
+
     this.props.setPageMax(this.pages.length);
     this.props.updateLocation(this.props.location);
 
@@ -64,22 +66,25 @@ class App extends Component {
       this.props.valid(name)
     );
 
-    event("prev", "navigation", "next", this.props.currentPage);
     this.props.prevPage();
+    event("prev", "navigation", "next", this.props.currentPage);
+    setPage(this.pageNamesForGA[this.props.currentPage]);
   }
 
   nextClick() {
+    this.props.nextPage();
+    event("next", "navigation", "next", this.props.currentPage);
+    setPage(this.pageNamesForGA[this.props.currentPage]);
+    window.scrollTo(0, 0);
+
     if (this.props.currentPage === this.pages.length - 2) {
       this.sheetSubmit(this.props.formFields);
     }
-
-    event("next", "navigation", "next", this.props.currentPage);
-    this.props.nextPage();
-    window.scrollTo(0, 0);
   }
 
   componentDidMount() {
     event("mount", "load", "app", 1, true);
+    setPage(this.pageNamesForGA[this.props.currentPage]);
   }
 
   componentWillUnmount() {

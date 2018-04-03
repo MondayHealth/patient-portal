@@ -23,3 +23,8 @@ export function exception(description, fatal) {
     fatal: !!fatal
   });
 }
+
+export function setPage(name) {
+  gTag("set", "page", "/" + name + ".html");
+  gTag("send", "pageview");
+}
