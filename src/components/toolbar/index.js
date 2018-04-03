@@ -56,7 +56,7 @@ const StepperContainer = ({ activePage }) => {
   if (activePage === sections.length) {
     return (
       <div className={classes}>
-        <ToolBarSection state={"submitted"}>Thank you</ToolBarSection>
+        <ToolBarSection state={"submitted"} />
       </div>
     );
   }
