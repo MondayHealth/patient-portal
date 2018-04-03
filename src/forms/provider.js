@@ -17,8 +17,8 @@ export default class Provider extends Component {
             insurance, so please include the <b>full</b> name of your plan if
             you have one.{" "}
             <span className={"de-emphasized"}>
-              (E.g.: Oxford Freedom, Cigna Open Access Plus, or Oscar
-              Market Silver)
+              (E.g.: Oxford Freedom, Cigna Open Access Plus, or Oscar Market
+              Silver)
             </span>
           </span>
           <Input
@@ -37,13 +37,35 @@ export default class Provider extends Component {
             id={"max-spend"}
           />
         </Cell>
-        <Cell size={12}>
-          <span>Would you prefer to see a therapist of a specific gender?</span>
+        <Cell size={4} sizes={{ desktop: 6 }}>
+          <span>
+            Would you prefer to see a someone who identifies as a specific
+            gender?
+          </span>
           <Select
             label={"Gender"}
             options={["No Preference", "Male", "Female", "Other"]}
             defaultValue={0}
             id={"provider-gender"}
+          />
+        </Cell>
+        <Cell size={4} sizes={{ desktop: 6 }}>
+          <span>
+            Would you like your therapist to have a certain amount of
+            experience?
+          </span>
+          <Select
+            label={"Experience"}
+            options={[
+              "No Preference",
+              "Less than 5 years",
+              "6-10 years",
+              "10-15 years",
+              "16-24 years",
+              "25+ years"
+            ]}
+            defaultValue={0}
+            id={"experience"}
           />
         </Cell>
         <Cell size={12}>

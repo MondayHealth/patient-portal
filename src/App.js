@@ -35,7 +35,9 @@ class App extends Component {
     this.props.setPageMax(this.pages.length);
     this.props.updateLocation(this.props.location);
 
-    window.onbeforeunload = this.beforeUnloadHandler.bind(this);
+    if (window.location.hostname !== "localhost") {
+      window.onbeforeunload = this.beforeUnloadHandler.bind(this);
+    }
   }
 
   beforeUnloadHandler() {

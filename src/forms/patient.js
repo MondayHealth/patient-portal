@@ -48,5 +48,17 @@ export default () => (
     <Cell size={2} sizes={{ desktop: 3 }}>
       <NumberInput required max={99999} label={"ZIP"} id={"zip"} />
     </Cell>
+    <Cell size={12}>
+      <div className={"tos-container"}>
+        <h3>Acknowledgment Of Terms of Use</h3>
+        <span>
+          By clicking the "Submit" button you agree to the Terms of Use hosted
+          on this site and authorize Monday Health, Inc. to share and receive
+          information related to scheduling appointments. Your privacy is
+          extremely important to us and, as such, your information will not be
+          shared with other parties without your consent.
+        </span>
+      </div>
+    </Cell>
   </Grid>
 );
