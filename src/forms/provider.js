@@ -14,6 +14,17 @@ export default class Provider extends Component {
         <Title text={"Describe your ideal therapist"} />
         <Cell size={12}>
           <span>
+            What's the most you can afford to pay per therapy appointment?{" "}
+            <b>(Required)</b>
+          </span>
+          <CurrencyInput
+            required
+            label={"Max cost per appointment"}
+            id={"max-spend"}
+          />
+        </Cell>
+        <Cell size={12}>
+          <span>
             We always try to match you with a provider that takes your
             insurance, so please include the <b>full</b> name of your plan if
             you have one.{" "}
@@ -23,19 +34,8 @@ export default class Provider extends Component {
             </span>
           </span>
           <Input
-            required
             label={"The full name of your insurance plan"}
             id={"insurance"}
-          />
-        </Cell>
-        <Cell size={12}>
-          <span>
-            What's the most you can afford to pay per therapy appointment?
-          </span>
-          <CurrencyInput
-            required
-            label={"Max cost per appointment"}
-            id={"max-spend"}
           />
         </Cell>
         <Cell size={4} sizes={{ desktop: 6 }}>

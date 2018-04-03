@@ -10,8 +10,8 @@ import { Title } from "./title";
 export default () => (
   <Grid>
     <Title text={"Tell us about yourself"}>
-      Now we just need to know a little more about you. All fields are required
-      except for gender, and don't worry: this information will <b>only</b> be
+      Now we just need to know a little more about you. Only your name, age, and
+      email are required, and don't worry: this information will <b>only</b> be
       shared with therapists you explicitly select.
     </Title>
     <Cell size={4} sizes={{ desktop: 6 }}>
@@ -54,9 +54,14 @@ export default () => (
         <span>
           By clicking the "Submit" button you agree to the Terms of Use hosted
           on this site and authorize Monday Health, Inc. to share and receive
-          information related to scheduling appointments. Your privacy is
-          extremely important to us and, as such, your information will not be
-          shared with other parties without your consent.
+          information related to scheduling appointments.
+        </span>
+        <br />
+        <br />
+        <span>
+          Your privacy is extremely important to us and, as such, your
+          information will not be shared with other parties without your
+          consent.
         </span>
       </div>
     </Cell>
