@@ -1,3 +1,5 @@
+const TRACKING_ID = "UA-111743668-2";
+
 function gTag() {
   window.dataLayer.push(arguments);
 }
@@ -5,7 +7,7 @@ function gTag() {
 export function init() {
   window.dataLayer = window.dataLayer || [];
   gTag("js", new Date());
-  gTag("config", "UA-111743668-2");
+  gTag("config", TRACKING_ID);
 }
 
 export function event(name, category, label, value, nonInteractive) {
@@ -25,6 +27,6 @@ export function exception(description, fatal) {
 }
 
 export function setPage(name) {
-  gTag("set", "page", "/" + name + ".html");
-  gTag("send", "pageview");
+  const page_path = "/" + name;
+  gTag("config", TRACKING_ID, { page_path });
 }
