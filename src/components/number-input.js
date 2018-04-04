@@ -21,6 +21,4 @@ export function validate(value) {
   return !(this.props.max && intVal > this.props.max);
 }
 
-export default params => (
-  <Input {...params} type={"number"} validator={validate} />
-);
+export default params => <Input {...params} numeric validator={validate} />;
