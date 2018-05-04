@@ -29,6 +29,7 @@ export default class Patient extends Component {
           <Input
             label={"Describe how you got here, if you'd like."}
             id={"other-referral"}
+            max={200}
           />
         </Cell>
       );
