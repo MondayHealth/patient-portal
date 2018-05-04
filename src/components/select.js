@@ -37,6 +37,9 @@ class Select extends MDCBase {
 
     this.mdcObject.listen("MDCSelect:change", () => {
       this.props.update(this.props.id, this.mdcObject.value);
+      if (this.props.valueChanged) {
+        this.props.valueChanged(this.props.id, this.mdcObject.value);
+      }
     });
 
     const existingValue = this.props.formFields[this.props.id];
