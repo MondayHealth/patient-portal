@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Grid from "../components/grid";
 import { Title } from "./title";
 import Cell from "../components/cell";
+import Input from "../components/input";
 
 class Submitted extends Component {
   static getError(text) {
@@ -34,17 +35,37 @@ class Submitted extends Component {
   static getSuccess() {
     return (
       <Grid>
-        <Title text={"We'll be in touch soon!"}>
-          We're just starting out, so we review every match for quality. This
-          makes the process take between 48 and 72 hours (a bit slower than we'd
-          like) but rest assured we'll get in touch with you soon.
+        <Title text={"Thanks for letting us know how you feel."}>
+          In the next 48-72 hours we'll email you a curated list of compatible
+          providers who take your insurance. We think they'll be great, and we
+          hope that this will help make a difficult process a little easier.
         </Title>
         <Cell size={12}>
-          No personal information will be saved on this website as a result of
-          filling out this form, so feel free to close this tab now{" "}
-          <span role={"img"} aria-label="smiley face">
-            😀
-          </span>
+          <h3>Want help scheduling your appointment?</h3>
+          <p>
+            We partner with employers to give you concierge services, such as
+            therapist introductions and scheduling, to further reduce the
+            complexities of finding the right person to talk to. If we're not
+            already working with your company feel free to refer us below to
+            whomever makes the benefits decisions where you work and we'll take
+            it from there (without mentioning you, of course.)
+          </p>
+        </Cell>
+        <Cell size={12}>
+          <Input
+            label={"E-Mail Address"}
+            id={"manager-email"}
+            leadingIcon={"email"}
+          />
+        </Cell>
+        <Cell size={12}>
+          <p>
+            No personal information will be saved on this website as a result of
+            filling out this form, so feel free to close this tab now{" "}
+            <span role={"img"} aria-label="smiley face">
+              😀
+            </span>
+          </p>
         </Cell>
       </Grid>
     );
