@@ -19,7 +19,7 @@ import {
 } from "./actions";
 
 import "@material/typography/dist/mdc.typography.min.css";
-import { event } from "./gtag";
+import { event, navigate } from "./gtag";
 
 class App extends Component {
   constructor(props) {
@@ -67,14 +67,12 @@ class App extends Component {
     );
 
     this.props.prevPage();
-    event("prev", "navigation", "next", this.props.currentPage);
-    setPage(this.pageNamesForGA[this.props.currentPage]);
+    this.pageChangeEvent("prev");
   }
 
   nextClick() {
     this.props.nextPage();
-    event("next", "navigation", "next", this.props.currentPage);
-    setPage(this.pageNamesForGA[this.props.currentPage]);
+    this.pageChangeEvent("next");
     window.scrollTo(0, 0);
 
     if (this.props.currentPage === this.pages.length - 2) {
@@ -82,9 +80,17 @@ class App extends Component {
     }
   }
 
+  pageChangeEvent(direction) {
+    const idx = this.props.currentPage;
+    const name = this.pageNamesForGA[idx];
+    // This ordering is important because the event will be fired from the
+    // current page, then the page name will change for subsequent events
+    event(direction, "navigation", name, idx);
+    navigate(name);
+  }
+
   componentDidMount() {
-    event("mount", "load", "app", 1, true);
-    setPage(this.pageNamesForGA[this.props.currentPage]);
+    this.pageChangeEvent("mount");
   }
 
   componentWillUnmount() {

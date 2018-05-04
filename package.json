@@ -21,7 +21,7 @@
     "@material/typography": "^0.28.0",
     "google-libphonenumber": "^3.1.2",
     "history": "^4.7.2",
-    "node-sass-chokidar": "^1.2.0",
+    "node-sass-chokidar": "^1.2.2",
     "npm-run-all": "^4.1.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

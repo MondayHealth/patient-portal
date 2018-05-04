@@ -1,17 +1,17 @@
 const TRACKING_ID = "UA-111743668-2";
 
-function gTag() {
+function gtag() {
   window.dataLayer.push(arguments);
 }
 
 export function init() {
   window.dataLayer = window.dataLayer || [];
-  gTag("js", new Date());
-  gTag("config", TRACKING_ID);
+  gtag("js", new Date());
+  gtag("config", TRACKING_ID);
 }
 
 export function event(name, category, label, value, nonInteractive) {
-  gTag("event", name, {
+  gtag("event", name, {
     event_category: category,
     event_label: label,
     non_interaction: nonInteractive,
@@ -20,13 +20,13 @@ export function event(name, category, label, value, nonInteractive) {
 }
 
 export function exception(description, fatal) {
-  gTag("event", "exception", {
+  gtag("event", "exception", {
     description: description,
     fatal: !!fatal
   });
 }
 
-export function setPage(name) {
-  const page_path = "/" + name;
-  gTag("config", TRACKING_ID, { page_path });
+export function navigate(name) {
+  let page_path = "/" + name;
+  gtag("config", TRACKING_ID, { page_path });
 }

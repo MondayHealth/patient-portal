@@ -8,14 +8,14 @@ import registerServiceWorker from "./registerServiceWorker";
 import { Provider } from "react-redux";
 import { Route, Switch } from "react-router";
 import { ConnectedRouter } from "react-router-redux";
-import { event, init, setPage } from "./gtag";
+import { event, init, navigate } from "./gtag";
 import store, { history } from "./store-index";
 
 const target = document.getElementById("root");
 
 init();
+navigate("");
 event("bootstrap", "load", "app", 0, true);
-setPage("index");
 
 ReactDOM.render(
   <Provider store={store}>
