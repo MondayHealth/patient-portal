@@ -57,13 +57,13 @@ class Submitted extends Component {
             target="_blank"
             href={"https://www.monday.health/employers/"}
           >
-            our Employee Assistance website
+            the overview of our Mental Health Concierge for Employees
             <Icon name={"open_in_new"} />
           </a>{" "}
           for more specifics about the services we provide.{" "}
           <i>
-            Giving us their email wont sign them up for anything and, of course,
-            we'll never mention you specifically.
+            Giving us their email won't sign them up for anything and, of
+            course, we'll never mention you specifically.
           </i>
         </Cell>
         <EmailCollector />
