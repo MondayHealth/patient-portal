@@ -32,10 +32,6 @@ class Input extends MDCBase {
   constructor(props) {
     super(props);
 
-    this.state = {
-      leadingIcon: false
-    };
-
     this.onChange = this.onChange.bind(this);
   }
 
@@ -68,10 +64,6 @@ class Input extends MDCBase {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      leadingIcon: nextProps.leadingIcon || false
-    });
-
     this.required(nextProps.required);
   }
 
@@ -160,9 +152,9 @@ class Input extends MDCBase {
     let classes = "mdc-text-field mdc-text-field--box";
     let icon = null;
 
-    if (this.state.leadingIcon) {
+    if (this.props.leadingIcon) {
       classes += " mdc-text-field--with-leading-icon";
-      icon = <Icon name={this.state.leadingIcon} />;
+      icon = <Icon name={this.props.leadingIcon} />;
     }
 
     return (

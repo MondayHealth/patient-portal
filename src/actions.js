@@ -42,6 +42,21 @@ function submitSuccess() {
   return { type: SUBMIT_SUCCESS };
 }
 
+export const SUBMIT_REFERRAL_BEGIN = "SUBMIT_REFERRAL_BEGIN";
+function submitReferralAction(values) {
+  return { type: SUBMIT_REFERRAL_BEGIN, values: values };
+}
+
+export const SUBMIT_REFERRAL_ERROR = "SUBMIT_REFERRAL_ERROR";
+function submitReferralError(error) {
+  return { type: SUBMIT_REFERRAL_ERROR, error: error };
+}
+
+export const SUBMIT_REFERRAL_SUCCESS = "SUBMIT_REFERRAL_SUCCESS";
+function submitReferralSuccess() {
+  return { type: SUBMIT_REFERRAL_SUCCESS};
+}
+
 export const UPDATE_FIELD_VALIDITY = "UPDATE_FIELD_VALIDITY";
 export function fieldValidity(valid, fieldName) {
   return { type: UPDATE_FIELD_VALIDITY, valid, fieldName };
@@ -54,9 +69,13 @@ export function updateLocation(location) {
 
 const SUBMIT_ENDPOINT = "https://api.monday.health/patient/submit";
 
-export function post(data) {
+export function post(data, customEndpoint) {
+  const target = customEndpoint
+    ? "https://api.monday.health/patient/" + customEndpoint
+    : SUBMIT_ENDPOINT;
+
   const request = new XMLHttpRequest();
-  request.open("POST", SUBMIT_ENDPOINT, true);
+  request.open("POST", target, true);
 
   request.setRequestHeader("Content-type", "application/json");
 
@@ -70,8 +89,33 @@ export function post(data) {
 
     request.send(data);
 
-    event("send", "form", "xhr", 1, true);
+    event("send", customEndpoint ? customEndpoint : "form", "xhr", 1, true);
   });
+}
+
+const EMAIL_ENDPOINT = "referral/submit";
+
+export function submitReferral(dispatch) {
+  return function submitReferralClosure(values) {
+    dispatch(submitReferralAction(values));
+
+    return post(JSON.stringify(values), EMAIL_ENDPOINT)
+      .then(result => {
+        const parsed = JSON.parse(result);
+        if (!parsed || parsed.success !== true) {
+          const msg = "invalid response: " + result;
+          exception(msg, true);
+          dispatch(submitReferralError(msg));
+        } else {
+          event("success", "referral", "received result", 2, true);
+          dispatch(submitReferralSuccess(result));
+        }
+      })
+      .catch(error => {
+        exception(error, true);
+        dispatch(submitError(error));
+      });
+  };
 }
 
 export function submit(dispatch) {

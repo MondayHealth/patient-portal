@@ -1,6 +1,6 @@
 @import "theme.scss";
 
-$invalid-bg: transparentize($mdc-theme-primary, .9);
+$invalid-bg: transparentize($mdc-theme-primary, 0.9);
 
 html {
   color: $mdc-theme-text-primary-on-light;
@@ -12,8 +12,7 @@ body {
   background-color: $container-color;
 }
 
-textarea
-{
+textarea {
   resize: vertical;
 }
 
@@ -22,63 +21,52 @@ textarea
   padding: 8px 8px 32px;
 }
 
-.mdc-text-field
-{
+.mdc-text-field {
   width: 100%;
 }
 
-.de-emphasized
-{
+.de-emphasized {
   color: lighten($mdc-theme-text-primary-on-light, 35);
 }
 
 // This is a fix for some weird inclusion order bug
-.mdc-select:not(.mdc-select--disabled)
-{
-  .mdc-select__surface:focus
-  {
-    .mdc-select__label
-    {
+.mdc-select:not(.mdc-select--disabled) {
+  .mdc-select__surface:focus {
+    .mdc-select__label {
       color: $mdc-theme-primary;
     }
   }
 }
 
-.mdc-text-field:not(.mdc-text-field--disabled):not(.mdc-text-field--textarea).mdc-text-field--invalid
-{
+.mdc-text-field:not(.mdc-text-field--disabled):not(.mdc-text-field--textarea).mdc-text-field--invalid {
   background-color: $invalid-bg;
 }
 
-label.mdc-text-field--invalid.mdc-text-field--textarea
-{
-  textarea, span
-  {
+label.mdc-text-field--invalid.mdc-text-field--textarea {
+  textarea,
+  span {
     background-color: $invalid-bg;
   }
 }
 
-.mdc-select--box
-{
+.mdc-select--box {
   margin-top: 16px;
   margin-bottom: 8px;
   width: 100%;
 }
 
-main
-{
+main {
   max-width: 768px;
   margin: 0 auto;
 }
 
 @media (max-width: 768px) {
-  main
-  {
+  main {
     padding-bottom: 64px;
   }
 }
 
-.submit-error
-{
+.submit-error {
   background-color: #ececec;
   padding: 5px 25px 25px;
 
@@ -137,13 +125,46 @@ main
     }
   }
 
-  span
-  {
+  span {
     color: lighten($mdc-theme-text-primary-on-light, 50);
-    font-size: .75em;
+    font-size: 0.75em;
     text-align: center;
     display: inherit;
     margin: 0 auto;
   }
 }
 
+a.out-link {
+  position: relative;
+  margin-right: 18px;
+  i.material-icons {
+    position: absolute;
+    font-size: 18px;
+    right: -19px;
+    bottom: 0px;
+  }
+}
+
+#ref-sub-container {
+  justify-self: end;
+
+  button {
+    min-width: 128px;
+  }
+}
+
+#submission-end-notice {
+  padding-top: 20px;
+  opacity: 0.65;
+}
+
+#referral-thanks {
+  background-color: lighten($mdc-theme-primary, 47);
+  padding: 10px 25px;
+  h3 {
+    color: $mdc-theme-primary;
+    span {
+      margin-left: 5px;
+    }
+  }
+}

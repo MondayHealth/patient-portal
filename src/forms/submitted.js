@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import Grid from "../components/grid";
 import { Title } from "./title";
 import Cell from "../components/cell";
-import Input from "../components/input";
+import { Icon } from "../components/icon";
+import EmailCollector from "../components/email-collector";
 
 class Submitted extends Component {
   static getError(text) {
@@ -35,35 +36,46 @@ class Submitted extends Component {
   static getSuccess() {
     return (
       <Grid>
-        <Title text={"Thanks for letting us know how you feel."}>
+        <Title text={"Thank you!"}>
           In the next 48-72 hours we'll email you a curated list of compatible
-          providers who take your insurance. We think they'll be great, and we
-          hope that this will help make a difficult process a little easier.
+          providers who take your insurance. We think they'll be great and we
+          hope that it makes a difficult process a little easier.
+        </Title>
+        <Title text={"Want help scheduling your appointment?"}>
+          We partner with employers to give you concierge services, such as
+          therapist introductions and scheduling, further reducing the
+          complexities of finding the right provider. If we're not already
+          working with your company consider giving us the email address of the
+          person who makes the benefits decisions where you work and we'll
+          introduce ourselves.
         </Title>
         <Cell size={12}>
-          <h3>Want help scheduling your appointment?</h3>
-          <p>
-            We partner with employers to give you concierge services, such as
-            therapist introductions and scheduling, to further reduce the
-            complexities of finding the right person to talk to. If we're not
-            already working with your company feel free to refer us below to
-            whomever makes the benefits decisions where you work and we'll take
-            it from there (without mentioning you, of course.)
-          </p>
+          Check out{" "}
+          <a
+            className={"out-link"}
+            rel="noopener noreferrer"
+            target="_blank"
+            href={"https://www.monday.health/employers/"}
+          >
+            our Employee Assistance website
+            <Icon name={"open_in_new"} />
+          </a>{" "}
+          for more specifics about the services we provide.{" "}
+          <i>
+            Giving us their email wont sign them up for anything and, of course,
+            we'll never mention you specifically.
+          </i>
         </Cell>
-        <Cell size={12}>
-          <Input
-            label={"E-Mail Address"}
-            id={"manager-email"}
-            leadingIcon={"email"}
-          />
-        </Cell>
-        <Cell size={12}>
+        <EmailCollector />
+        <Cell size={12} />
+        <Cell id={"submission-end-notice"} size={12}>
           <p>
-            No personal information will be saved on this website as a result of
-            filling out this form, so feel free to close this tab now{" "}
-            <span role={"img"} aria-label="smiley face">
-              😀
+            No personal information will be saved on your computer as a result
+            of filling out this form. Further, the information you've submitted
+            will never be used for any purpose other than to match you with a
+            mental health provider{" "}
+            <span role={"img"} aria-label="smiley face emoji">
+              🙂
             </span>
           </p>
         </Cell>

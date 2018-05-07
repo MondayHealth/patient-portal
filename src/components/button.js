@@ -43,6 +43,10 @@ export default class Button extends Component {
       classes += " _mdc-button-alternate";
     }
 
+    if (this.props.unelevated) {
+      classes += " mdc-button--unelevated";
+    }
+
     return (
       <button
         id={this.props.id}
